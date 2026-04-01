@@ -6,15 +6,28 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ba"
-version = "0.2.0"
+version = "0.3.0"
 description = "ba (Bayesian Association) provides a unified probabilistic framework for Qualitative Comparative Analysis (QCA) and Association Rule Mining (ARM)"
 readme = "README.md"
 requires-python = ">=3.10"
-keywords = []
+keywords = [
+    "bayesian",
+    "association",
+    "contingency-table",
+    "qca",
+    "association-rules",
+    "categorical-data",
+    "small-sample",
+]
 authors = [
     { name = "Thor Whalen" },
 ]
-dependencies = []
+dependencies = [
+    "numpy>=1.23",
+    "scipy>=1.10",
+    "pandas>=1.5",
+    "spyn>=0.0.6",
+]
 
 [project.license]
 text = "mit"
@@ -33,6 +46,20 @@ dev = [
 docs = [
     "sphinx>=6.0",
     "sphinx-rtd-theme>=1.0",
+]
+rules = [
+    "mlxtend>=0.22",
+]
+pymc = [
+    "pymc>=5.0",
+]
+viz = [
+    "matplotlib>=3.5",
+]
+full = [
+    "ba[rules]",
+    "ba[pymc]",
+    "ba[viz]",
 ]
 
 [tool.ruff]
