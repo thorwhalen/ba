@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "ba"
-version = "0.0.1"
+version = "0.1.0"
 description = "ba (Bayesian Association) provides a unified probabilistic framework for Qualitative Comparative Analysis (QCA) and Association Rule Mining (ARM)"
 readme = "README.md"
 requires-python = ">=3.10"
