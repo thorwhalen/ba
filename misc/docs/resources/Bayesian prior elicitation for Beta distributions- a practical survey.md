@@ -47,12 +47,16 @@ In **Python**, no dedicated elicitation function exists in scipy, but the patter
 from scipy.stats import beta
 from scipy.optimize import fsolve
 
+
 def beta_from_quantiles(q1, p1, q2, p2):
     """Solve for Alpha, Beta given P(X < q1) = p1, P(X < q2) = p2."""
+
     def equations(params):
         a, b = params
         return [beta.cdf(q1, a, b) - p1, beta.cdf(q2, a, b) - p2]
+
     return fsolve(equations, [2, 2])
+
 
 # 90% credible interval [0.2, 0.6]
 alpha, beta_param = beta_from_quantiles(0.2, 0.05, 0.6, 0.95)
@@ -62,8 +66,9 @@ alpha, beta_param = beta_from_quantiles(0.2, 0.05, 0.6, 0.95)
 
 ```python
 import preliz as pz
+
 dist = pz.Beta()
-pz.maxent(dist, 0.2, 0.6, 0.90)   # 90% mass in [0.2, 0.6]
+pz.maxent(dist, 0.2, 0.6, 0.90)  # 90% mass in [0.2, 0.6]
 print(dist.alpha, dist.beta)
 ```
 
@@ -248,9 +253,10 @@ The canonical Python workflow for quantile-based fitting:
 from scipy.stats import beta
 from scipy.optimize import fsolve
 
+
 def fit_beta(q1, p1, q2, p2):
-    return fsolve(lambda ab: [beta.cdf(q1, *ab) - p1,
-                               beta.cdf(q2, *ab) - p2], [2, 2])
+    return fsolve(lambda ab: [beta.cdf(q1, *ab) - p1, beta.cdf(q2, *ab) - p2], [2, 2])
+
 
 # "90% sure P is between 0.2 and 0.6"
 a, b = fit_beta(0.2, 0.05, 0.6, 0.95)

@@ -76,12 +76,18 @@ def _builtin_bruteforce(
             mask = transactions[list(combo)].all(axis=1)
             count = mask.sum()
             if count >= min_count:
-                results.append({
-                    "itemsets": frozenset(combo),
-                    "support": count / n,
-                })
+                results.append(
+                    {
+                        "itemsets": frozenset(combo),
+                        "support": count / n,
+                    }
+                )
 
-    return pd.DataFrame(results) if results else pd.DataFrame(columns=["itemsets", "support"])
+    return (
+        pd.DataFrame(results)
+        if results
+        else pd.DataFrame(columns=["itemsets", "support"])
+    )
 
 
 def _mlxtend_fpgrowth(

@@ -57,7 +57,9 @@ def mine(
     True
     """
     trans = to_transactions(data)
-    itemsets = mine_itemsets(trans, min_support=min_support, max_len=max_len, algorithm=algorithm)
+    itemsets = mine_itemsets(
+        trans, min_support=min_support, max_len=max_len, algorithm=algorithm
+    )
 
     if itemsets.empty:
         return pd.DataFrame(columns=["antecedents", "consequents"] + list(measures))
@@ -85,7 +87,9 @@ def mine(
                     if not antecedent.issubset(set(appearance["lhs"])):
                         continue
                 if "none" in appearance:
-                    if antecedent & set(appearance["none"]) or consequent & set(appearance["none"]):
+                    if antecedent & set(appearance["none"]) or consequent & set(
+                        appearance["none"]
+                    ):
                         continue
 
             # Apply outcome constraint
@@ -117,17 +121,23 @@ def mine(
             if "conviction" in measures:
                 p_not_y = 1 - s_y
                 p_x_not_y = s_x - s_xy
-                rule_row["conviction"] = (s_x * p_not_y) / p_x_not_y if p_x_not_y > 0 else None
+                rule_row["conviction"] = (
+                    (s_x * p_not_y) / p_x_not_y if p_x_not_y > 0 else None
+                )
             if "leverage" in measures:
                 rule_row["leverage"] = s_xy - s_x * s_y
 
             if bayesian:
-                _add_bayesian_ci(rule_row, s_xy, s_x, n, prior_alpha, prior_beta, ci_prob)
+                _add_bayesian_ci(
+                    rule_row, s_xy, s_x, n, prior_alpha, prior_beta, ci_prob
+                )
 
             rules_rows.append(rule_row)
 
-    return pd.DataFrame(rules_rows) if rules_rows else pd.DataFrame(
-        columns=["antecedents", "consequents"] + list(measures)
+    return (
+        pd.DataFrame(rules_rows)
+        if rules_rows
+        else pd.DataFrame(columns=["antecedents", "consequents"] + list(measures))
     )
 
 

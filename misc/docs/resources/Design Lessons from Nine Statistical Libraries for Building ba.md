@@ -41,9 +41,9 @@ mlxtend chains pure functions with consistent signatures — `apriori()`, `fpgro
 This is spyn's signature contribution and `ba`'s most important inheritance. The `Pot` class represents factors (probability tables) as pandas DataFrames with MultiIndex, but the interaction model is through Python operators that mirror mathematical notation [5]:
 
 ```python
-posterior = (evidence * prior) / []      # Bayes' rule: product, then normalize
+posterior = (evidence * prior) / []  # Bayes' rule: product, then normalize
 conditional = joint / joint[given_vars]  # P(X|Y) = P(X,Y) / P(Y)
-marginal = joint[var_name]               # Sum out all but named variables
+marginal = joint[var_name]  # Sum out all but named variables
 ```
 
 `*` is factor product, `/` is normalization or conditioning, `[]` is marginalization. **No other library in this analysis achieves this level of notational economy for probabilistic inference.** Crucially, **this algebra is already categorical** — `Pot` handles any number of variable levels. The binary case falls out naturally.
@@ -146,16 +146,17 @@ ArviZ's `InferenceData` — a single container holding named groups (posterior, 
 @dataclass
 class AnalysisResult:
     """Single container for all analysis outputs."""
-    observed_data: pd.DataFrame               # Original data
-    contingency_tables: dict[str, ContingencyTable]  # r×c tables (or 2×2)
-    metrics: pd.DataFrame                     # All computed measures
-    posterior: dict[str, BayesianResult]       # Per-pair posteriors
-    rules: pd.DataFrame | None                # Association rules (if mined)
-    truth_table: pd.DataFrame | None          # QCA truth table (if computed)
-    qca_solution: QCASolution | None          # Minimized Boolean expression
-    metadata: dict                            # Config, warnings, timing
 
-    def summary(self, kind='stats') -> pd.DataFrame: ...
+    observed_data: pd.DataFrame  # Original data
+    contingency_tables: dict[str, ContingencyTable]  # r×c tables (or 2×2)
+    metrics: pd.DataFrame  # All computed measures
+    posterior: dict[str, BayesianResult]  # Per-pair posteriors
+    rules: pd.DataFrame | None  # Association rules (if mined)
+    truth_table: pd.DataFrame | None  # QCA truth table (if computed)
+    qca_solution: QCASolution | None  # Minimized Boolean expression
+    metadata: dict  # Config, warnings, timing
+
+    def summary(self, kind="stats") -> pd.DataFrame: ...
     def save(self, path: str) -> None: ...
     def to_dataframe(self) -> pd.DataFrame: ...
 ```
@@ -171,11 +172,13 @@ class AnalysisResult:
 R's `calibrate → truthTable → minimize` pipeline translates to:
 
 ```python
-solution = (ba.qca(df, outcome='SURV')
-              .calibrate(DEV={'thresholds': [165, 175, 185]})  # → binary
-              .truth_table(incl_cut=0.8, n_cut=1)
-              .minimize(include='?')
-              .with_details())
+solution = (
+    ba.qca(df, outcome="SURV")
+    .calibrate(DEV={"thresholds": [165, 175, 185]})  # → binary
+    .truth_table(incl_cut=0.8, n_cut=1)
+    .minimize(include="?")
+    .with_details()
+)
 ```
 
 **Key adaptation:** `calibrate()` is now explicitly the gateway from categorical/numerical to binary. It's not optional boilerplate — it's the deliberate binarization step that QCA requires, and `ba` makes this visible rather than implicit.
@@ -187,15 +190,16 @@ QCA's unified API across crisp-set, fuzzy-set, and multi-value variants should b
 arules' `appearance` constraints (which items on LHS/RHS/neither) are critical for targeted mining [2]:
 
 ```python
-rules = ba.mine_rules(data, min_support=0.1,
-                      appearance={'rhs': ['outcome=yes'], 'none': ['id_column']})
+rules = ba.mine_rules(
+    data, min_support=0.1, appearance={"rhs": ["outcome=yes"], "none": ["id_column"]}
+)
 ```
 
 arules' `interestMeasure()` registry pattern — 45+ measures, computed on demand with cached base counts — is the architecture `ba` needs:
 
 ```python
 # Compute multiple measures in one call, reusing base counts
-quality = ba.measures.compute(rules, ['lift', 'phi', 'conviction', 'fisher_p'])
+quality = ba.measures.compute(rules, ["lift", "phi", "conviction", "fisher_p"])
 ```
 
 ---
@@ -209,10 +213,10 @@ quality = ba.measures.compute(rules, ['lift', 'phi', 'conviction', 'fisher_p'])
 ```python
 from ba.core import Pot
 
-joint = data.pot('treatment', 'outcome')        # Any cardinality
-p_out_given_treat = joint / joint['treatment']   # Conditioning
-p_out = joint['outcome']                         # Marginalization
-posterior = (likelihood * prior) / []            # Bayesian update
+joint = data.pot("treatment", "outcome")  # Any cardinality
+p_out_given_treat = joint / joint["treatment"]  # Conditioning
+p_out = joint["outcome"]  # Marginalization
+posterior = (likelihood * prior) / []  # Bayesian update
 ```
 
 **A2. ArviZ's container pattern.** Single `AnalysisResult` object with named groups. Pass one object everywhere.
@@ -222,8 +226,8 @@ posterior = (likelihood * prior) / []            # Bayesian update
 **A4. DataFrame-in/DataFrame-out with interchangeable algorithms.**
 
 ```python
-itemsets = ba.fpgrowth(df, min_support=0.1)   # Categorical-native
-itemsets = ba.apriori(df, min_support=0.1)     # Same schema, swap freely
+itemsets = ba.fpgrowth(df, min_support=0.1)  # Categorical-native
+itemsets = ba.apriori(df, min_support=0.1)  # Same schema, swap freely
 ```
 
 **A5. Conjugate Bayesian as fast path.** Beta-Binomial for 2×2, Dirichlet-Multinomial for r×c. Both exact, instant, dependency-light. PyMC only for hierarchical models.
@@ -236,9 +240,9 @@ itemsets = ba.apriori(df, min_support=0.1)     # Same schema, swap freely
 
 ```python
 store = ba.DataStore(df)
-v = store.vars                                  # Attribute namespace for all columns
-joint = store.pot(v.treatment, v.outcome)        # Lazy, cached
-table = store.contingency(v.treatment, v.outcome) # → ContingencyTable (r×c or 2×2)
+v = store.vars  # Attribute namespace for all columns
+joint = store.pot(v.treatment, v.outcome)  # Lazy, cached
+table = store.contingency(v.treatment, v.outcome)  # → ContingencyTable (r×c or 2×2)
 ```
 
 **B2. ContingencyTable hierarchy.** `ContingencyTable` (r×c general) → `ContingencyTable2x2` (adds OR, RR, phi, Yule's Q). The 2×2 class inherits from the general class and adds binary-specific metrics. `.as_2x2()` converts with a clear error if not 2×2.
@@ -247,20 +251,21 @@ table = store.contingency(v.treatment, v.outcome) # → ContingencyTable (r×c o
 
 ```python
 # Categorical → binary is explicit, not hidden
-binary_df = ba.qca.calibrate(df, {'illness': {'threshold': 'any_present'},
-                                   'age': {'threshold': 30}})
-solution = ba.qca.minimize(binary_df, outcome='retained_custody')
+binary_df = ba.qca.calibrate(
+    df, {"illness": {"threshold": "any_present"}, "age": {"threshold": 30}}
+)
+solution = ba.qca.minimize(binary_df, outcome="retained_custody")
 ```
 
 **B4. ArviZ's rcParams — scoped to `ba`.**
 
 ```python
-ba.config['stats.ci_prob'] = 0.95
-ba.config['rules.min_support'] = 0.05
-ba.config['qca.incl_cut'] = 0.8
-ba.config['bayesian.default_prior'] = 'jeffreys'
+ba.config["stats.ci_prob"] = 0.95
+ba.config["rules.min_support"] = 0.05
+ba.config["qca.incl_cut"] = 0.8
+ba.config["bayesian.default_prior"] = "jeffreys"
 
-with ba.config.context({'stats.ci_prob': 0.89}):
+with ba.config.context({"stats.ci_prob": 0.89}):
     result.summary()
 ```
 
@@ -291,20 +296,20 @@ with ba.config.context({'stats.ci_prob': 0.89}):
 ### Tier 1: Façade
 
 ```python
-result = ba.analyze('data.csv', outcome='custody_retained')
-result.summary()          # Everything at a glance
-result.top_rules(10)      # Most interesting associations
-result.plot()             # Default visualization
+result = ba.analyze("data.csv", outcome="custody_retained")
+result.summary()  # Everything at a glance
+result.top_rules(10)  # Most interesting associations
+result.plot()  # Default visualization
 ```
 
 ### Tier 2: Paradigm
 
 ```python
-ba.bayesian.posterior(table, prior='jeffreys')      # Dirichlet-Multinomial
-ba.rules.mine(df, min_support=2/13, outcome='Y')    # ARM (categorical-native)
-ba.qca.minimize(binary_df, incl_cut=0.8)            # QCA (binary-only)
-ba.binary.odds_ratio(table_2x2)                      # 2×2-specific shortcuts
-ba.contingency.all_metrics(table)                    # Registry-based (r×c aware)
+ba.bayesian.posterior(table, prior="jeffreys")  # Dirichlet-Multinomial
+ba.rules.mine(df, min_support=2 / 13, outcome="Y")  # ARM (categorical-native)
+ba.qca.minimize(binary_df, incl_cut=0.8)  # QCA (binary-only)
+ba.binary.odds_ratio(table_2x2)  # 2×2-specific shortcuts
+ba.contingency.all_metrics(table)  # Registry-based (r×c aware)
 ```
 
 ### Tier 3: Primitives

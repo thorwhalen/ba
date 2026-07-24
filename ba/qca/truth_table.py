@@ -62,7 +62,9 @@ def truth_table(
         row["n"] = n
         row["consistency"] = round(consistency, 4)
         row["OUT"] = (
-            1 if consistency >= incl_cut else (0 if consistency <= (1 - incl_cut) else "C")
+            1
+            if consistency >= incl_cut
+            else (0 if consistency <= (1 - incl_cut) else "C")
         )
         row["flag"] = "low_n" if n <= 2 else ""
         rows.append(row)
@@ -73,9 +75,7 @@ def truth_table(
     return tt
 
 
-def _validate_binary(
-    data: pd.DataFrame, outcome: str, conditions: list[str]
-) -> None:
+def _validate_binary(data: pd.DataFrame, outcome: str, conditions: list[str]) -> None:
     """Raise ValueError if any column is not binary."""
     all_cols = conditions + [outcome]
     non_binary = []

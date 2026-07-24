@@ -62,11 +62,14 @@ def _apply_rule(series: pd.Series, rule: Any) -> pd.Series:
 
 def _any_present(series: pd.Series) -> pd.Series:
     """Truthy/non-null/non-zero/non-'no'/non-'none' → 1."""
+
     def _is_present(val):
         if pd.isna(val):
             return 0
         if isinstance(val, str):
-            return int(val.lower().strip() not in ("", "no", "none", "false", "0", "n/a", "na"))
+            return int(
+                val.lower().strip() not in ("", "no", "none", "false", "0", "n/a", "na")
+            )
         return int(bool(val))
 
     return series.map(_is_present).astype(int)

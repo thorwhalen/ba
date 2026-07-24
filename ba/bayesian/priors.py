@@ -51,9 +51,7 @@ def from_mean_kappa(mean: float | np.ndarray, kappa: float) -> np.ndarray:
     return mean * kappa
 
 
-def from_quantiles(
-    q1: float, p1: float, q2: float, p2: float
-) -> tuple[float, float]:
+def from_quantiles(q1: float, p1: float, q2: float, p2: float) -> tuple[float, float]:
     """Solve for Beta(α, β) matching P(θ < q1) = p1 and P(θ < q2) = p2.
 
     Uses least-squares minimization in log-space for numerical stability.

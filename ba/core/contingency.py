@@ -135,9 +135,7 @@ class ContingencyTable:
     def summary(self) -> pd.DataFrame:
         """One-row-per-metric summary DataFrame."""
         m = self.metrics()
-        return pd.DataFrame(
-            [{"measure": k, "value": v} for k, v in m.items()]
-        )
+        return pd.DataFrame([{"measure": k, "value": v} for k, v in m.items()])
 
     # -- Construction ----------------------------------------------------------
 

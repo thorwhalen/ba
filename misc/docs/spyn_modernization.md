@@ -45,7 +45,9 @@ union syntax (`X | Y` instead of `Union[X, Y]`).
 Key signatures:
 
 ```python
-def project_to(self, var_list: list[str] | str, *, assert_subset: bool = False) -> Pot: ...
+def project_to(
+    self, var_list: list[str] | str, *, assert_subset: bool = False
+) -> Pot: ...
 def normalize(self, var_list: list[str] | str = ()) -> Pot: ...
 def get_slice(self, intercept_dict: dict[str, Any]) -> Pot: ...
 def __getitem__(self, item: dict | list | tuple | str | None) -> Pot: ...
@@ -69,18 +71,21 @@ Python 3.8+ has `functools.cached_property` which does the same thing.
 # BEFORE (in pot.py)
 from spyn.util import lazyprop
 
+
 class Pot:
     @lazyprop
     def vars(self):
-        return [c for c in self.tb.columns if c != 'pval']
+        return [c for c in self.tb.columns if c != "pval"]
+
 
 # AFTER
 from functools import cached_property
 
+
 class Pot:
     @cached_property
     def vars(self) -> list[str]:
-        return [c for c in self.tb.columns if c != 'pval']
+        return [c for c in self.tb.columns if c != "pval"]
 ```
 
 Note: `cached_property` stores values in the instance `__dict__`, same as
@@ -101,8 +106,11 @@ def order_vars(self, var_list=None, sort_pts=True):
     # ... modifies self.tb in place ...
     return self
 
+
 # AFTER
-def order_vars(self, var_list: list[str] | None = None, *, sort_pts: bool = True) -> Pot:
+def order_vars(
+    self, var_list: list[str] | None = None, *, sort_pts: bool = True
+) -> Pot:
     """Return a new Pot with reordered variables."""
     new_tb = self.tb.copy()
     # ... reorder new_tb ...
@@ -123,6 +131,7 @@ Replace all usages with `dict.fromkeys(items)` for ordered deduplication:
 ```python
 # BEFORE
 from spyn.utils.ordered_set import OrderedSet
+
 unique = OrderedSet(items)
 
 # AFTER
@@ -144,14 +153,20 @@ def __or__(self, y):
     print("Operator | is deprecated for normalization. Use / instead.")
     return self.normalize(y)
 
+
 # AFTER (option A: remove)
 # Delete __or__ entirely
+
 
 # AFTER (option B: proper warning)
 def __or__(self, y):
     import warnings
-    warnings.warn("Pot.__or__ (|) is deprecated. Use / for normalization.",
-                  DeprecationWarning, stacklevel=2)
+
+    warnings.warn(
+        "Pot.__or__ (|) is deprecated. Use / for normalization.",
+        DeprecationWarning,
+        stacklevel=2,
+    )
     return self.normalize(y)
 ```
 
@@ -182,6 +197,7 @@ def __getitem__(self, item):
         return self.project_to([])
     ...
 
+
 # AFTER
 def __getitem__(self, item: dict | list | tuple | str | None) -> Pot:
     match item:
@@ -203,7 +219,7 @@ Apply similarly to `__truediv__`.
 
 ```python
 # BEFORE (line 43 area)
-self.tb.index = [''] * len(self.tb)
+self.tb.index = [""] * len(self.tb)
 
 # AFTER
 self.tb = self.tb.reset_index(drop=True)

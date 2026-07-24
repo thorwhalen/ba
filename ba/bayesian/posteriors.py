@@ -50,7 +50,9 @@ class BayesianResult:
         df.attrs["prior"] = self.prior_name
         return df
 
-    def prob_gt(self, threshold: float = 0.0, parameter: str = "risk_difference") -> float:
+    def prob_gt(
+        self, threshold: float = 0.0, parameter: str = "risk_difference"
+    ) -> float:
         """P(parameter > threshold | data) from MC samples."""
         if self.mc_samples is None or parameter not in self.mc_samples:
             raise ValueError(
@@ -92,9 +94,13 @@ def posterior(
     ess_prior = float(prior_arr.sum())
 
     if ct.is_2x2:
-        return _beta_binomial(ct.as_2x2(), prior_arr, prior_name, ess_prior, n_mc, alpha_low, alpha_high)
+        return _beta_binomial(
+            ct.as_2x2(), prior_arr, prior_name, ess_prior, n_mc, alpha_low, alpha_high
+        )
     else:
-        return _dirichlet_multinomial(ct, prior_arr, prior_name, ess_prior, alpha_low, alpha_high)
+        return _dirichlet_multinomial(
+            ct, prior_arr, prior_name, ess_prior, alpha_low, alpha_high
+        )
 
 
 def _beta_binomial(ct, prior_arr, prior_name, ess_prior, n_mc, alpha_low, alpha_high):
@@ -153,9 +159,18 @@ def _beta_binomial(ct, prior_arr, prior_name, ess_prior, n_mc, alpha_low, alpha_
         "odds_ratio": or_samples,
     }
 
-    ci_rd = (float(np.percentile(rd, alpha_low * 100)), float(np.percentile(rd, alpha_high * 100)))
-    ci_rr = (float(np.percentile(rr, alpha_low * 100)), float(np.percentile(rr, alpha_high * 100)))
-    ci_or = (float(np.percentile(or_samples, alpha_low * 100)), float(np.percentile(or_samples, alpha_high * 100)))
+    ci_rd = (
+        float(np.percentile(rd, alpha_low * 100)),
+        float(np.percentile(rd, alpha_high * 100)),
+    )
+    ci_rr = (
+        float(np.percentile(rr, alpha_low * 100)),
+        float(np.percentile(rr, alpha_high * 100)),
+    )
+    ci_or = (
+        float(np.percentile(or_samples, alpha_low * 100)),
+        float(np.percentile(or_samples, alpha_high * 100)),
+    )
 
     return BayesianResult(
         posterior_params={

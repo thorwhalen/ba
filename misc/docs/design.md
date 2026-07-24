@@ -101,31 +101,33 @@ metadata.
 ```python
 @dataclass
 class ContingencyTable:
-    counts: np.ndarray            # shape (r, c)
-    row_var: str                  # name of the row variable
-    col_var: str                  # name of the column variable
-    row_labels: tuple[str, ...]   # one label per row level
-    col_labels: tuple[str, ...]   # one label per column level
+    counts: np.ndarray  # shape (r, c)
+    row_var: str  # name of the row variable
+    col_var: str  # name of the column variable
+    row_labels: tuple[str, ...]  # one label per row level
+    col_labels: tuple[str, ...]  # one label per column level
 
     # Derived (computed properties, not stored)
-    n: int                        # grand total
-    row_margins: np.ndarray       # shape (r,)
-    col_margins: np.ndarray       # shape (c,)
-    expected: np.ndarray          # expected counts under independence
-    is_2x2: bool                  # True if shape == (2, 2)
+    n: int  # grand total
+    row_margins: np.ndarray  # shape (r,)
+    col_margins: np.ndarray  # shape (c,)
+    expected: np.ndarray  # expected counts under independence
+    is_2x2: bool  # True if shape == (2, 2)
     has_zero_cell: bool
-    min_expected: float           # smallest expected count (for chi-sq validity)
+    min_expected: float  # smallest expected count (for chi-sq validity)
 
     def as_2x2(self) -> ContingencyTable2x2: ...
     def to_dataframe(self) -> pd.DataFrame: ...
     def to_pot(self) -> Pot: ...
-    def metrics(self, measures='default') -> dict: ...
+    def metrics(self, measures="default") -> dict: ...
     def summary(self) -> pd.DataFrame: ...
 
     @classmethod
     def from_dataframe(cls, df, row_var, col_var) -> ContingencyTable: ...
     @classmethod
-    def from_counts(cls, a, b, c, d, *, row_var='X', col_var='Y') -> ContingencyTable2x2: ...
+    def from_counts(
+        cls, a, b, c, d, *, row_var="X", col_var="Y"
+    ) -> ContingencyTable2x2: ...
 ```
 
 ### 2.2 ContingencyTable2x2
@@ -136,7 +138,10 @@ Inherits from ContingencyTable. Adds binary-specific metrics as properties.
 @dataclass
 class ContingencyTable2x2(ContingencyTable):
     # Named cells for readability
-    a: int; b: int; c: int; d: int
+    a: int
+    b: int
+    c: int
+    d: int
 
     # Binary-specific computed properties
     odds_ratio: float | None
@@ -144,8 +149,8 @@ class ContingencyTable2x2(ContingencyTable):
     risk_difference: float
     phi: float
     yules_q: float | None
-    qca_consistency: float        # = a / (a + b) = confidence(X → Y)
-    qca_coverage: float           # = a / (a + c)
+    qca_consistency: float  # = a / (a + b) = confidence(X → Y)
+    qca_coverage: float  # = a / (a + c)
 ```
 
 The `as_2x2()` method on the parent class validates shape and returns a
@@ -163,12 +168,12 @@ bridge is bidirectional:
 pot = table.to_pot()
 
 # Pot → ContingencyTable
-table = ba.core.pot.to_contingency(pot, row_var='X', col_var='Y')
+table = ba.core.pot.to_contingency(pot, row_var="X", col_var="Y")
 
 # Direct from data via DataStore
 store = ba.DataStore(df)
-joint = store.pot('treatment', 'outcome')       # returns spyn Pot
-table = store.contingency('treatment', 'outcome') # returns ContingencyTable
+joint = store.pot("treatment", "outcome")  # returns spyn Pot
+table = store.contingency("treatment", "outcome")  # returns ContingencyTable
 ```
 
 **Modernization notes for spyn** (see [research.md](research.md), spyn
@@ -190,14 +195,13 @@ R's `arules::interestMeasure()`.
 
 ```python
 class MeasureRegistry:
-    def register(self, name, func, *,
-                 requires_2x2=False,
-                 requires_ordinal=False,
-                 description=''):
-        ...
+    def register(
+        self, name, func, *, requires_2x2=False, requires_ordinal=False, description=""
+    ): ...
 
-    def compute(self, ct: ContingencyTable,
-                measures: list[str] | str = 'default') -> dict[str, float]:
+    def compute(
+        self, ct: ContingencyTable, measures: list[str] | str = "default"
+    ) -> dict[str, float]:
         """Compute requested measures. Skips incompatible measures with warning."""
         ...
 
@@ -220,7 +224,7 @@ class MeasureRegistry:
 
 Users extend the registry:
 ```python
-ba.measures.register('my_metric', my_func, requires_2x2=False)
+ba.measures.register("my_metric", my_func, requires_2x2=False)
 ```
 
 ### 2.5 AnalysisResult
@@ -233,17 +237,17 @@ A single container for all analysis outputs, following ArviZ's
 class AnalysisResult:
     observed_data: pd.DataFrame
     contingency_tables: dict[str, ContingencyTable]
-    metrics: pd.DataFrame                      # all computed measures per pair
+    metrics: pd.DataFrame  # all computed measures per pair
     posterior: dict[str, BayesianResult] | None
-    rules: pd.DataFrame | None                 # association rules (if mined)
-    truth_table: pd.DataFrame | None           # QCA truth table (if computed)
+    rules: pd.DataFrame | None  # association rules (if mined)
+    truth_table: pd.DataFrame | None  # QCA truth table (if computed)
     qca_solution: QCASolution | None
-    config: dict                               # parameters used
-    warnings: list[str]                        # small-sample flags, etc.
+    config: dict  # parameters used
+    warnings: list[str]  # small-sample flags, etc.
 
-    def summary(self, kind='stats') -> pd.DataFrame: ...
-    def top_pairs(self, n=10, *, sort_by='bayes_factor') -> pd.DataFrame: ...
-    def top_rules(self, n=10, *, sort_by='lift') -> pd.DataFrame: ...
+    def summary(self, kind="stats") -> pd.DataFrame: ...
+    def top_pairs(self, n=10, *, sort_by="bayes_factor") -> pd.DataFrame: ...
+    def top_rules(self, n=10, *, sort_by="lift") -> pd.DataFrame: ...
     def to_dataframe(self) -> pd.DataFrame: ...
 ```
 
@@ -252,11 +256,11 @@ class AnalysisResult:
 ```python
 @dataclass
 class BayesianResult:
-    posterior_params: dict              # e.g. {'alpha': [...], 'beta': [...]}
+    posterior_params: dict  # e.g. {'alpha': [...], 'beta': [...]}
     posterior_mean: np.ndarray
     credible_interval: tuple[float, float]
     bayes_factor: float | None
-    data_weight: float                  # n / (n + ESS_prior)
+    data_weight: float  # n / (n + ESS_prior)
     prior_params: dict
     prior_name: str
     mc_samples: dict[str, np.ndarray] | None  # RD, RR, OR samples (2×2 only)
@@ -277,13 +281,13 @@ One-liner entry point for the most common workflow.
 import ba
 
 # Analyze all pairwise associations in a DataFrame
-result = ba.analyze(df, outcome='custody_retained')
-result.summary()                  # DataFrame of all pairs with metrics + CIs
-result.top_pairs(10)              # strongest, most certain associations
-result.top_rules(10)              # if ARM was run
+result = ba.analyze(df, outcome="custody_retained")
+result.summary()  # DataFrame of all pairs with metrics + CIs
+result.top_pairs(10)  # strongest, most certain associations
+result.top_rules(10)  # if ARM was run
 
 # Single-pair analysis
-table = ba.contingency(df, 'treatment', 'outcome')
+table = ba.contingency(df, "treatment", "outcome")
 table.summary()
 ```
 
@@ -301,19 +305,21 @@ Per-tradition APIs for users who know what they want.
 
 ```python
 # Bayesian
-posterior = ba.bayesian.posterior(table, prior='jeffreys')
-bf = ba.bayesian.bayes_factor(table, sampling='independent')
-sensitivity = ba.bayesian.sensitivity(table, priors=['jeffreys', 'uniform', 'beta(2,2)'])
+posterior = ba.bayesian.posterior(table, prior="jeffreys")
+bf = ba.bayesian.bayes_factor(table, sampling="independent")
+sensitivity = ba.bayesian.sensitivity(
+    table, priors=["jeffreys", "uniform", "beta(2,2)"]
+)
 
 # Association Rule Mining
-rules = ba.rules.mine(df, min_support=2/13, outcome='Y')
-rules = ba.rules.mine(df, appearance={'rhs': ['outcome=yes']})
-quality = ba.measures.compute(table, ['lift', 'phi', 'conviction', 'fisher_p'])
+rules = ba.rules.mine(df, min_support=2 / 13, outcome="Y")
+rules = ba.rules.mine(df, appearance={"rhs": ["outcome=yes"]})
+quality = ba.measures.compute(table, ["lift", "phi", "conviction", "fisher_p"])
 
 # QCA
-binary_df = ba.qca.calibrate(df, {'age': 30, 'illness': 'any_present'})
-tt = ba.qca.truth_table(binary_df, outcome='retained', conditions=['A', 'B', 'C'])
-solution = ba.qca.minimize(tt, include='?')
+binary_df = ba.qca.calibrate(df, {"age": 30, "illness": "any_present"})
+tt = ba.qca.truth_table(binary_df, outcome="retained", conditions=["A", "B", "C"])
+solution = ba.qca.minimize(tt, include="?")
 
 # Binary shortcuts
 ba.binary.odds_ratio(table)
@@ -358,7 +364,9 @@ class DataStore:
         """Contingency table for two variables. Auto-detects 2×2."""
         ...
 
-    def all_pairs(self, *, outcome: str | None = None) -> dict[tuple[str,str], ContingencyTable]:
+    def all_pairs(
+        self, *, outcome: str | None = None
+    ) -> dict[tuple[str, str], ContingencyTable]:
         """All pairwise contingency tables. If outcome given, only pairs with outcome."""
         ...
 ```
@@ -376,7 +384,7 @@ class DataStore:
 def posterior(
     ct: ContingencyTable,
     *,
-    prior: str | tuple | np.ndarray = 'jeffreys',
+    prior: str | tuple | np.ndarray = "jeffreys",
     n_mc: int = 100_000,
 ) -> BayesianResult:
     """Conjugate posterior for row-conditional proportions.
@@ -394,14 +402,18 @@ Named priors and construction helpers:
 def jeffreys(k: int = 2) -> np.ndarray:
     """Jeffreys prior: Dirichlet(0.5, ..., 0.5) for k categories."""
 
+
 def uniform(k: int = 2) -> np.ndarray:
     """Uniform: Dirichlet(1, ..., 1) for k categories."""
+
 
 def from_mean_kappa(mean: float | np.ndarray, kappa: float) -> np.ndarray:
     """Mean + concentration. kappa=2 → uniform, kappa=50 → strong."""
 
+
 def from_quantiles(q1: float, p1: float, q2: float, p2: float) -> tuple[float, float]:
     """Solve for Beta(α, β) matching P(θ<q1)=p1, P(θ<q2)=p2."""
+
 
 def from_counts(successes: int, failures: int) -> tuple[float, float]:
     """'Imaginary data' framing: Beta(successes+1, failures+1)."""
@@ -413,8 +425,8 @@ def from_counts(successes: int, failures: int) -> tuple[float, float]:
 def bayes_factor(
     ct: ContingencyTable,
     *,
-    sampling: str = 'independent',  # 'poisson', 'joint', 'independent', 'hypergeometric'
-    a0: float = 1.0,               # Dirichlet concentration
+    sampling: str = "independent",  # 'poisson', 'joint', 'independent', 'hypergeometric'
+    a0: float = 1.0,  # Dirichlet concentration
 ) -> float:
     """Gunel-Dickey BF₁₀ (association vs. independence).
 
@@ -428,7 +440,7 @@ def bayes_factor(
 def sensitivity(
     ct: ContingencyTable,
     *,
-    priors: list[str | tuple] = ('jeffreys', 'uniform', 'beta(2,2)'),
+    priors: list[str | tuple] = ("jeffreys", "uniform", "beta(2,2)"),
     n_mc: int = 100_000,
 ) -> pd.DataFrame:
     """Compute posterior under multiple priors. Returns comparison table.
@@ -486,8 +498,8 @@ def truth_table(
 def minimize(
     truth_table: pd.DataFrame,
     *,
-    include: str = '1',    # '1' = positive only, '?' = include remainders
-    method: str = 'qmc',   # Quine-McCluskey
+    include: str = "1",  # '1' = positive only, '?' = include remainders
+    method: str = "qmc",  # Quine-McCluskey
 ) -> QCASolution:
     """Minimize truth table to disjunction of conjunctions.
 
@@ -510,10 +522,10 @@ def mine(
     min_support: float = 0.1,
     min_confidence: float = 0.5,
     outcome: str | None = None,
-    appearance: dict | None = None,   # {'rhs': [...], 'lhs': [...], 'none': [...]}
-    algorithm: str = 'fpgrowth',      # or 'apriori'
-    measures: list[str] = ('support', 'confidence', 'lift'),
-    bayesian: bool = True,            # attach credible intervals to metrics
+    appearance: dict | None = None,  # {'rhs': [...], 'lhs': [...], 'none': [...]}
+    algorithm: str = "fpgrowth",  # or 'apriori'
+    measures: list[str] = ("support", "confidence", "lift"),
+    bayesian: bool = True,  # attach credible intervals to metrics
 ) -> pd.DataFrame:
     """Mine association rules. Returns DataFrame with rule columns + metrics.
 
@@ -529,7 +541,7 @@ def to_transactions(
     df: pd.DataFrame,
     *,
     binary_as_presence: bool = True,  # binary cols: 1 → item present
-    include_negation: bool = False,   # add negated items for binary cols
+    include_negation: bool = False,  # add negated items for binary cols
 ) -> pd.DataFrame:
     """Convert DataFrame to transaction-encoded boolean DataFrame.
 
@@ -546,15 +558,15 @@ ArviZ-style configuration with scoped overrides.
 
 ```python
 # Global defaults
-ba.config['stats.ci_prob'] = 0.95
-ba.config['stats.default_prior'] = 'jeffreys'
-ba.config['rules.min_support'] = 0.05
-ba.config['qca.incl_cut'] = 0.8
-ba.config['warnings.small_n_threshold'] = 30
+ba.config["stats.ci_prob"] = 0.95
+ba.config["stats.default_prior"] = "jeffreys"
+ba.config["rules.min_support"] = 0.05
+ba.config["qca.incl_cut"] = 0.8
+ba.config["warnings.small_n_threshold"] = 30
 
 # Scoped override
-with ba.config.context({'stats.ci_prob': 0.89}):
-    result.summary()   # uses 89% intervals
+with ba.config.context({"stats.ci_prob": 0.89}):
+    result.summary()  # uses 89% intervals
 ```
 
 ---

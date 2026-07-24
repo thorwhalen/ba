@@ -52,41 +52,41 @@ for managing project vs. user-level settings.
 import ba
 
 # Analyze all pairwise associations in a DataFrame
-result = ba.analyze(df, outcome='Y')
-result.summary()          # metrics + Bayesian CIs for every pair
-result.top_pairs(5)       # strongest, most certain associations
+result = ba.analyze(df, outcome="Y")
+result.summary()  # metrics + Bayesian CIs for every pair
+result.top_pairs(5)  # strongest, most certain associations
 ```
 
 ## Single-pair analysis
 
 ```python
 ct = ba.contingency_table(a=10, b=5, c=3, d=12)
-ct.odds_ratio             # 8.0
-ct.phi                    # 0.471
-ct.metrics(['lift', 'phi', 'cramers_v'])
+ct.odds_ratio  # 8.0
+ct.phi  # 0.471
+ct.metrics(["lift", "phi", "cramers_v"])
 
 # Bayesian posterior
-post = ba.bayesian.posterior(ct, prior='jeffreys')
-post.credible_interval['risk_difference']   # (0.12, 0.71)
-post.prob_gt(0.0, 'risk_difference')        # 0.996
+post = ba.bayesian.posterior(ct, prior="jeffreys")
+post.credible_interval["risk_difference"]  # (0.12, 0.71)
+post.prob_gt(0.0, "risk_difference")  # 0.996
 ```
 
 ## Per-tradition APIs
 
 ```python
 # Bayesian
-ba.bayesian.posterior(ct, prior='uniform')
+ba.bayesian.posterior(ct, prior="uniform")
 ba.bayesian.bayes_factor(ct)
-ba.bayesian.sensitivity(ct, priors=['jeffreys', 'uniform', 'beta(2,2)'])
+ba.bayesian.sensitivity(ct, priors=["jeffreys", "uniform", "beta(2,2)"])
 
 # QCA
-binary_df = ba.qca.calibrate(df, {'age': 30, 'illness': 'any_present'})
-tt = ba.qca.truth_table(binary_df, outcome='Y', conditions=['A', 'B', 'C'])
+binary_df = ba.qca.calibrate(df, {"age": 30, "illness": "any_present"})
+tt = ba.qca.truth_table(binary_df, outcome="Y", conditions=["A", "B", "C"])
 solution = ba.qca.minimize(tt)
-ba.qca.necessity(binary_df, 'Y', ['A', 'B'])
+ba.qca.necessity(binary_df, "Y", ["A", "B"])
 
 # Association Rule Mining
-rules = ba.rules.mine(df, min_support=0.1, outcome='Y')
+rules = ba.rules.mine(df, min_support=0.1, outcome="Y")
 ```
 
 ## Key features

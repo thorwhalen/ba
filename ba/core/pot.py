@@ -67,7 +67,7 @@ def to_contingency(
     from ba.core.contingency import ContingencyTable
 
     tb = pot.tb.copy()
-    pot_vars = set(c for c in tb.columns if c != 'pval')
+    pot_vars = set(c for c in tb.columns if c != "pval")
 
     if not {row_var, col_var}.issubset(pot_vars):
         raise ValueError(
@@ -91,7 +91,7 @@ def to_contingency(
     for _, row in tb.iterrows():
         ri = row_idx[row[row_var]]
         ci = col_idx[row[col_var]]
-        counts[ri, ci] += int(row['pval'])
+        counts[ri, ci] += int(row["pval"])
 
     row_labels = tuple(str(v) for v in row_vals)
     col_labels = tuple(str(v) for v in col_vals)
@@ -136,4 +136,4 @@ def from_contingency(ct: ContingencyTable) -> "Pot":
             cv.append(cval)
             pv.append(int(ct.counts[i, j]))
 
-    return Pot({ct.row_var: rv, ct.col_var: cv, 'pval': pv})
+    return Pot({ct.row_var: rv, ct.col_var: cv, "pval": pv})

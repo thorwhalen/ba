@@ -105,17 +105,24 @@ OUTPUT  Posterior distributions and summaries for RD, RR, OR
 import numpy as np
 from scipy import stats
 
-def bayesian_2x2(a, b, c, d, alpha1=0.5, beta1=0.5,
-                 alpha0=0.5, beta0=0.5, S=100_000):
+
+def bayesian_2x2(a, b, c, d, alpha1=0.5, beta1=0.5, alpha0=0.5, beta0=0.5, S=100_000):
     pi1 = np.random.beta(alpha1 + a, beta1 + b, S)
     pi0 = np.random.beta(alpha0 + c, beta0 + d, S)
-    RD  = pi1 - pi0
-    RR  = pi1 / pi0
-    OR  = (pi1 / (1 - pi1)) / (pi0 / (1 - pi0))
+    RD = pi1 - pi0
+    RR = pi1 / pi0
+    OR = (pi1 / (1 - pi1)) / (pi0 / (1 - pi0))
+
     def summary(x, name, null=0):
         lo, hi = np.percentile(x, [2.5, 97.5])
-        return dict(name=name, mean=x.mean(), median=np.median(x),
-                    ci95=(lo, hi), prob_gt_null=np.mean(x > null))
+        return dict(
+            name=name,
+            mean=x.mean(),
+            median=np.median(x),
+            ci95=(lo, hi),
+            prob_gt_null=np.mean(x > null),
+        )
+
     return [summary(RD, "RD"), summary(RR, "RR", 1), summary(OR, "OR", 1)]
 ```
 
@@ -518,14 +525,17 @@ from scipy.stats import beta as beta_dist
 from scipy.optimize import minimize
 import numpy as np
 
+
 def beta_from_quantiles(q1, p1, q2, p2):
     """Find Beta(a,b) matching P(θ<q1)=p1, P(θ<q2)=p2."""
+
     def objective(log_ab):
         a, b = np.exp(log_ab)
         r1 = beta_dist.cdf(q1, a, b) - p1
         r2 = beta_dist.cdf(q2, a, b) - p2
         return r1**2 + r2**2
-    res = minimize(objective, [np.log(2), np.log(2)], method='Nelder-Mead')
+
+    res = minimize(objective, [np.log(2), np.log(2)], method="Nelder-Mead")
     return np.exp(res.x)  # (alpha, beta)
 ```
 

@@ -232,7 +232,9 @@ class AnalysisResult:
             df = df.sort_values(sort_by, ascending=False)
         return df
 
-    def top_pairs(self, n: int = 10, *, sort_by: str = "bayes_factor") -> "pd.DataFrame":
+    def top_pairs(
+        self, n: int = 10, *, sort_by: str = "bayes_factor"
+    ) -> "pd.DataFrame":
         """Top n pairs by the given metric."""
         df = self.summary(sort_by=sort_by)
         return df.head(n)
@@ -241,6 +243,7 @@ class AnalysisResult:
         """Top n rules (if rules were mined)."""
         if self.rules is None or self.rules.empty:
             import pandas as pd
+
             return pd.DataFrame()
         df = self.rules.copy()
         if sort_by in df.columns:

@@ -44,9 +44,7 @@ class VarNamespace:
             raise AttributeError(name)
         if name in self._names:
             return name
-        raise AttributeError(
-            f"No variable '{name}'. Available: {self._names}"
-        )
+        raise AttributeError(f"No variable '{name}'. Available: {self._names}")
 
     def __dir__(self):
         return self._names

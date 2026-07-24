@@ -245,37 +245,56 @@ ba/
 @dataclass
 class ContingencyTable:
     """r×c contingency table. The universal input for all analyses."""
-    counts: np.ndarray           # r×c array of counts
-    row_var: str                 # Name of the row variable
-    col_var: str                 # Name of the column variable
-    row_labels: list[str]        # Labels for each row level
-    col_labels: list[str]        # Labels for each column level
+
+    counts: np.ndarray  # r×c array of counts
+    row_var: str  # Name of the row variable
+    col_var: str  # Name of the column variable
+    row_labels: list[str]  # Labels for each row level
+    col_labels: list[str]  # Labels for each column level
 
     @property
-    def n(self) -> int: return self.counts.sum()
+    def n(self) -> int:
+        return self.counts.sum()
+
     @property
-    def row_margins(self) -> np.ndarray: return self.counts.sum(axis=1)
+    def row_margins(self) -> np.ndarray:
+        return self.counts.sum(axis=1)
+
     @property
-    def col_margins(self) -> np.ndarray: return self.counts.sum(axis=0)
+    def col_margins(self) -> np.ndarray:
+        return self.counts.sum(axis=0)
+
     @property
     def expected(self) -> np.ndarray:
         return np.outer(self.row_margins, self.col_margins) / self.n
-    @property
-    def is_2x2(self) -> bool: return self.counts.shape == (2, 2)
-    @property
-    def has_zero_cell(self) -> bool: return (self.counts == 0).any()
-    @property
-    def min_cell(self) -> int: return int(self.counts.min())
 
-    def as_2x2(self) -> 'ContingencyTable2x2':
+    @property
+    def is_2x2(self) -> bool:
+        return self.counts.shape == (2, 2)
+
+    @property
+    def has_zero_cell(self) -> bool:
+        return (self.counts == 0).any()
+
+    @property
+    def min_cell(self) -> int:
+        return int(self.counts.min())
+
+    def as_2x2(self) -> "ContingencyTable2x2":
         """Convert to 2×2 specialization. Raises ValueError if not 2×2."""
         if not self.is_2x2:
-            raise ValueError(f"Table is {self.counts.shape}, not 2×2. "
-                             "Use ba.qca.calibrate() to binarize, or use r×c metrics.")
+            raise ValueError(
+                f"Table is {self.counts.shape}, not 2×2. "
+                "Use ba.qca.calibrate() to binarize, or use r×c metrics."
+            )
         return ContingencyTable2x2(
-            a=self.counts[0,0], b=self.counts[0,1],
-            c=self.counts[1,0], d=self.counts[1,1],
-            row_var=self.row_var, col_var=self.col_var)
+            a=self.counts[0, 0],
+            b=self.counts[0, 1],
+            c=self.counts[1, 0],
+            d=self.counts[1, 1],
+            row_var=self.row_var,
+            col_var=self.col_var,
+        )
 ```
 
 **2×2 specialization (inherits general, adds binary-specific):**
@@ -284,7 +303,11 @@ class ContingencyTable:
 @dataclass
 class ContingencyTable2x2(ContingencyTable):
     """2×2 contingency table. Adds OR, RR, phi, Yule's Q."""
-    a: int; b: int; c: int; d: int
+
+    a: int
+    b: int
+    c: int
+    d: int
 
     # Binary-specific properties
     @property
@@ -295,6 +318,7 @@ class ContingencyTable2x2(ContingencyTable):
     def phi(self) -> float: ...
     @property
     def yules_q(self) -> float | None: ...
+
     # ... etc
 ```
 
@@ -305,10 +329,10 @@ The `Pot` class from spyn is `ba`'s mathematical core for probabilistic reasonin
 ```python
 from ba.core import Pot
 
-joint = data.pot('treatment', 'outcome')    # Joint potential from data
-conditional = joint / joint['treatment']    # P(outcome | treatment)
-marginal = joint['outcome']                 # Marginalize to outcome
-posterior = (likelihood * prior) / []       # Bayesian update + normalize
+joint = data.pot("treatment", "outcome")  # Joint potential from data
+conditional = joint / joint["treatment"]  # P(outcome | treatment)
+marginal = joint["outcome"]  # Marginalize to outcome
+posterior = (likelihood * prior) / []  # Bayesian update + normalize
 ```
 
 **Proposed improvements to spyn for `ba` integration:**
@@ -327,27 +351,33 @@ A registry pattern (inspired by R's `arules::interestMeasure()`) where measures 
 class MeasureRegistry:
     """Extensible registry of interestingness/association measures."""
 
-    def register(self, name: str, func: Callable, requires_2x2: bool = False,
-                 requires_ordinal: bool = False, description: str = ""):
-        ...
+    def register(
+        self,
+        name: str,
+        func: Callable,
+        requires_2x2: bool = False,
+        requires_ordinal: bool = False,
+        description: str = "",
+    ): ...
 
-    def compute(self, ct: ContingencyTable, measures: list[str] | str = 'all') -> dict:
+    def compute(self, ct: ContingencyTable, measures: list[str] | str = "all") -> dict:
         """Compute requested measures from a contingency table.
         Skips measures incompatible with the table shape, with warnings."""
         ...
 
+
 # Built-in registrations:
-registry.register('support', compute_support, requires_2x2=False)
-registry.register('confidence', compute_confidence, requires_2x2=False)
-registry.register('lift', compute_lift, requires_2x2=False)
+registry.register("support", compute_support, requires_2x2=False)
+registry.register("confidence", compute_confidence, requires_2x2=False)
+registry.register("lift", compute_lift, requires_2x2=False)
 # ...
-registry.register('odds_ratio', compute_or, requires_2x2=True)
-registry.register('yules_q', compute_yules_q, requires_2x2=True)
-registry.register('cramers_v', compute_cramers_v, requires_2x2=False)
+registry.register("odds_ratio", compute_or, requires_2x2=True)
+registry.register("yules_q", compute_yules_q, requires_2x2=True)
+registry.register("cramers_v", compute_cramers_v, requires_2x2=False)
 # ...
 
 # User extension:
-registry.register('my_custom', my_func, requires_2x2=False)
+registry.register("my_custom", my_func, requires_2x2=False)
 ```
 
 When a user requests `odds_ratio` on a 3×4 table, the registry returns a warning ("odds_ratio requires a 2×2 table; use ba.qca.calibrate() to binarize") rather than silently failing.
@@ -357,11 +387,11 @@ When a user requests `odds_ratio` on a 3×4 table, the registry returns a warnin
 ```python
 def posterior_proportions(
     ct: ContingencyTable,
-    prior: np.ndarray | tuple[float, float] | str = 'jeffreys',
-    n_mc: int = 100_000
+    prior: np.ndarray | tuple[float, float] | str = "jeffreys",
+    n_mc: int = 100_000,
 ) -> BayesianResult:
     """Bayesian posterior for row-conditional proportions.
-    
+
     For 2×2: uses Beta-Binomial (fast, exact).
     For r×c: uses Dirichlet-Multinomial (fast, exact).
     Derived quantities (RR, OR, risk diff) computed via MC for 2×2 only.
@@ -375,15 +405,21 @@ def posterior_proportions(
 ### 4.6 Layer 3 — `qca/` — Binary-Only with Calibration Gateway
 
 ```python
-def truth_table(data: pd.DataFrame, outcome: str, conditions: list[str],
-                incl_cut: float = 0.8, n_cut: int = 1) -> pd.DataFrame:
+def truth_table(
+    data: pd.DataFrame,
+    outcome: str,
+    conditions: list[str],
+    incl_cut: float = 0.8,
+    n_cut: int = 1,
+) -> pd.DataFrame:
     """Build a QCA truth table. All conditions must be binary (0/1, True/False).
     Raises ValueError with calibration guidance if non-binary columns are found."""
     non_binary = [c for c in conditions if data[c].nunique() > 2]
     if non_binary:
         raise ValueError(
             f"QCA requires binary conditions. Non-binary columns: {non_binary}. "
-            f"Use ba.qca.calibrate(data, {non_binary[0]!r}, threshold=...) first.")
+            f"Use ba.qca.calibrate(data, {non_binary[0]!r}, threshold=...) first."
+        )
     ...
 ```
 

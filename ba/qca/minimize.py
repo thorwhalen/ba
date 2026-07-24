@@ -247,9 +247,7 @@ def _select_essential(
     return selected, coverage_map
 
 
-def _implicant_to_expr(
-    pattern: tuple[int | None, ...], conditions: list[str]
-) -> str:
+def _implicant_to_expr(pattern: tuple[int | None, ...], conditions: list[str]) -> str:
     """Format a pattern tuple as a Boolean expression."""
     terms = []
     for i, val in enumerate(pattern):
@@ -269,8 +267,4 @@ def _implicant_to_dict(
 ) -> dict[str, int | None]:
     """Convert implicant pattern to a {condition: value} dict."""
     _, pattern = imp
-    return {
-        conditions[i]: v
-        for i, v in enumerate(pattern)
-        if i < len(conditions)
-    }
+    return {conditions[i]: v for i, v in enumerate(pattern) if i < len(conditions)}

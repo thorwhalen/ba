@@ -50,6 +50,6 @@ def to_transactions(
             # Categorical: one-hot encode
             for val in sorted(unique, key=str):
                 item_name = f"{col}={val}"
-                result_cols[item_name] = (series == val)
+                result_cols[item_name] = series == val
 
     return pd.DataFrame(result_cols)

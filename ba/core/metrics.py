@@ -124,6 +124,7 @@ class _MeasureEntry:
 # Built-in measures
 # ---------------------------------------------------------------------------
 
+
 def _support(ct) -> float:
     """P(X ∩ Y) = a / n (top-left cell proportion)."""
     return float(ct.counts[0, 0] / ct.n)
@@ -274,6 +275,7 @@ def _uncertainty_coefficient(ct) -> float:
 
 # Binary-only measures (require ct to be ContingencyTable2x2)
 
+
 def _odds_ratio(ct) -> float | None:
     return ct.as_2x2().odds_ratio
 
@@ -334,21 +336,23 @@ registry.register(
 )
 
 # Binary-only measures
+registry.register("odds_ratio", _odds_ratio, requires_2x2=True, description="ad/bc")
 registry.register(
-    "odds_ratio", _odds_ratio, requires_2x2=True, description="ad/bc"
+    "relative_risk",
+    _relative_risk,
+    requires_2x2=True,
+    description="(a/(a+b))/(c/(c+d))",
 )
 registry.register(
-    "relative_risk", _relative_risk, requires_2x2=True, description="(a/(a+b))/(c/(c+d))"
-)
-registry.register(
-    "risk_difference", _risk_difference, requires_2x2=True, description="a/(a+b) - c/(c+d)"
+    "risk_difference",
+    _risk_difference,
+    requires_2x2=True,
+    description="a/(a+b) - c/(c+d)",
 )
 registry.register(
     "phi", _phi, requires_2x2=True, description="(ad-bc)/sqrt((a+b)(c+d)(a+c)(b+d))"
 )
-registry.register(
-    "yules_q", _yules_q, requires_2x2=True, description="(ad-bc)/(ad+bc)"
-)
+registry.register("yules_q", _yules_q, requires_2x2=True, description="(ad-bc)/(ad+bc)")
 registry.register(
     "qca_consistency",
     _qca_consistency,

@@ -74,7 +74,9 @@ def _bf_joint(counts, row_margins, col_margins, n, r, c, a0):
     # log P(data | H1)
     alpha_h1 = np.full((r, c), a0)
     post_h1 = alpha_h1 + counts
-    log_m1 = _log_dirichlet_function(post_h1.ravel()) - _log_dirichlet_function(alpha_h1.ravel())
+    log_m1 = _log_dirichlet_function(post_h1.ravel()) - _log_dirichlet_function(
+        alpha_h1.ravel()
+    )
 
     # log P(data | H0)
     # H0: row props ~ Dirichlet(c*a0 each, r terms),
@@ -87,7 +89,9 @@ def _bf_joint(counts, row_margins, col_margins, n, r, c, a0):
     log_m0_cols = 0.0
     for i in range(r):
         post_col_i = alpha_col + counts[i]
-        log_m0_cols += _log_dirichlet_function(post_col_i) - _log_dirichlet_function(alpha_col)
+        log_m0_cols += _log_dirichlet_function(post_col_i) - _log_dirichlet_function(
+            alpha_col
+        )
 
     log_m0 = log_m0_row + log_m0_cols
 
@@ -114,7 +118,9 @@ def _bf_independent(counts, row_margins, col_margins, n, r, c, a0):
     # log P(data | H0): pooled Dirichlet-Multinomial
     alpha_pooled = np.full(c, r * a0)
     post_pooled = alpha_pooled + col_margins
-    log_m0 = _log_dirichlet_function(post_pooled) - _log_dirichlet_function(alpha_pooled)
+    log_m0 = _log_dirichlet_function(post_pooled) - _log_dirichlet_function(
+        alpha_pooled
+    )
 
     log_bf10 = log_m1 - log_m0
     return float(np.exp(log_bf10))
@@ -143,7 +149,9 @@ def _bf_hypergeometric(counts, row_margins, col_margins, n, r, c, a0):
     alpha_row_sum = np.full(c, r * a0)
 
     # P(col_margins | H1)
-    log_col_h1 = _log_dirichlet_function(alpha_row_sum + col_margins) - _log_dirichlet_function(alpha_row_sum)
+    log_col_h1 = _log_dirichlet_function(
+        alpha_row_sum + col_margins
+    ) - _log_dirichlet_function(alpha_row_sum)
     # P(col_margins | H0) — same under H0
     log_col_h0 = log_col_h1  # margins have same distribution under both
 

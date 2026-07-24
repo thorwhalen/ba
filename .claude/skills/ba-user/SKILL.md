@@ -23,9 +23,9 @@ and point estimates alone are unreliable.
 import ba
 
 # One-liner: analyze all pairwise associations
-result = ba.analyze(df, outcome='retained_custody')
-result.summary()          # metrics + Bayesian CIs for every pair
-result.top_pairs(5)       # strongest, most certain associations
+result = ba.analyze(df, outcome="retained_custody")
+result.summary()  # metrics + Bayesian CIs for every pair
+result.top_pairs(5)  # strongest, most certain associations
 ```
 
 ## The Three Tiers
@@ -34,12 +34,12 @@ result.top_pairs(5)       # strongest, most certain associations
 
 ```python
 # Analyze everything at once
-result = ba.analyze(df, outcome='Y')
+result = ba.analyze(df, outcome="Y")
 result.summary()
-result.top_pairs(5, sort_by='bayes_factor')
+result.top_pairs(5, sort_by="bayes_factor")
 
 # With association rules
-result = ba.analyze(df, outcome='Y', rules=True)
+result = ba.analyze(df, outcome="Y", rules=True)
 result.top_rules(10)
 ```
 
@@ -52,32 +52,32 @@ appropriate metrics, and flags small-sample warnings.
 ```python
 # Single contingency table
 ct = ba.contingency_table(a=10, b=5, c=3, d=12)
-ct.odds_ratio       # 8.0
-ct.phi               # 0.471
-ct.metrics(['lift', 'phi', 'fisher_p'])
+ct.odds_ratio  # 8.0
+ct.phi  # 0.471
+ct.metrics(["lift", "phi", "fisher_p"])
 
 # From a DataFrame
-ct = ba.from_dataframe(df, 'treatment', 'outcome')
+ct = ba.from_dataframe(df, "treatment", "outcome")
 
 # Bayesian posterior
-post = ba.bayesian.posterior(ct, prior='jeffreys')
-post.credible_interval['risk_difference']  # (0.12, 0.71)
-post.prob_gt(0.0, 'risk_difference')       # P(RD > 0 | data)
+post = ba.bayesian.posterior(ct, prior="jeffreys")
+post.credible_interval["risk_difference"]  # (0.12, 0.71)
+post.prob_gt(0.0, "risk_difference")  # P(RD > 0 | data)
 
 # Bayes factor
 bf = ba.bayesian.bayes_factor(ct)  # BF > 1 favors association
 
 # Prior sensitivity
-ba.bayesian.sensitivity(ct, priors=['jeffreys', 'uniform', 'beta(2,2)'])
+ba.bayesian.sensitivity(ct, priors=["jeffreys", "uniform", "beta(2,2)"])
 
 # QCA
-binary_df = ba.qca.calibrate(df, {'age': 30, 'illness': 'any_present'})
-tt = ba.qca.truth_table(binary_df, 'Y', ['A', 'B', 'C'])
+binary_df = ba.qca.calibrate(df, {"age": 30, "illness": "any_present"})
+tt = ba.qca.truth_table(binary_df, "Y", ["A", "B", "C"])
 solution = ba.qca.minimize(tt)
-ba.qca.necessity(binary_df, 'Y', ['A', 'B'])
+ba.qca.necessity(binary_df, "Y", ["A", "B"])
 
 # Association rules
-rules = ba.rules.mine(df, min_support=0.1, outcome='Y')
+rules = ba.rules.mine(df, min_support=0.1, outcome="Y")
 ```
 
 ### Tier 3: Primitives (full control)
@@ -123,15 +123,15 @@ Pot objects from a DataFrame:
 
 ```python
 store = ba.DataStore(df)
-store.vars.treatment          # 'treatment' (attribute access)
-store.vars.binary()           # list of binary columns
-ct = store.contingency('treatment', 'outcome')  # cached
-pairs = store.all_pairs(outcome='Y')            # all pairs with Y
+store.vars.treatment  # 'treatment' (attribute access)
+store.vars.binary()  # list of binary columns
+ct = store.contingency("treatment", "outcome")  # cached
+pairs = store.all_pairs(outcome="Y")  # all pairs with Y
 
 # Pot algebra (requires spyn)
-joint = store.pot('treatment', 'outcome')
-conditional = joint / 'treatment'   # P(outcome | treatment)
-marginal = joint['outcome']         # marginalize to outcome
+joint = store.pot("treatment", "outcome")
+conditional = joint / "treatment"  # P(outcome | treatment)
+marginal = joint["outcome"]  # marginalize to outcome
 ```
 
 ## QCA Workflow
@@ -140,23 +140,26 @@ QCA requires binary data. Use `calibrate()` to binarize first:
 
 ```python
 # 1. Binarize
-binary_df = ba.qca.calibrate(df, {
-    'age': 30,                    # >= 30 → 1
-    'illness': 'any_present',     # truthy → 1
-    'score': 'median',            # >= median → 1
-    'custom': lambda x: x > 100,  # custom function
-})
+binary_df = ba.qca.calibrate(
+    df,
+    {
+        "age": 30,  # >= 30 → 1
+        "illness": "any_present",  # truthy → 1
+        "score": "median",  # >= median → 1
+        "custom": lambda x: x > 100,  # custom function
+    },
+)
 
 # 2. Build truth table (choose 3-5 conditions — not all 28!)
-tt = ba.qca.truth_table(binary_df, 'Y', ['A', 'B', 'C'], n_cut=2)
+tt = ba.qca.truth_table(binary_df, "Y", ["A", "B", "C"], n_cut=2)
 
 # 3. Minimize
 solution = ba.qca.minimize(tt)
 print(solution.expression)  # e.g., "A*B + ~A*C"
 
 # 4. Necessity/sufficiency
-ba.qca.necessity(binary_df, 'Y', ['A', 'B', 'C'])
-ba.qca.sufficiency(binary_df, 'Y', ['A', 'B', 'C'])
+ba.qca.necessity(binary_df, "Y", ["A", "B", "C"])
+ba.qca.sufficiency(binary_df, "Y", ["A", "B", "C"])
 ```
 
 ## Small-Sample Warnings
@@ -175,10 +178,11 @@ ba generates warnings automatically. Check `result.warnings`:
 def my_measure(ct):
     return ct.counts[0, 0] / ct.n
 
-ba.measures.register('my_metric', my_measure, description='top-left proportion')
+
+ba.measures.register("my_metric", my_measure, description="top-left proportion")
 
 # Use it
-ct.metrics(['my_metric', 'lift', 'phi'])
+ct.metrics(["my_metric", "lift", "phi"])
 ```
 
 ## Sample Data
@@ -186,6 +190,6 @@ ct.metrics(['my_metric', 'lift', 'phi'])
 ```python
 from ba.sample_data import custody_data, market_basket
 
-df = custody_data()   # 13 cases, 7 binary columns
+df = custody_data()  # 13 cases, 7 binary columns
 df = market_basket()  # 20 transactions, 4 items
 ```

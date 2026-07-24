@@ -59,15 +59,17 @@ def necessity(
             float(beta_dist.ppf(alpha_hi, post_a, post_b)),
         )
 
-        rows.append({
-            "condition": cond,
-            "consistency": round(consistency, 4),
-            "coverage": round(coverage, 4),
-            "n_xy": a,
-            "n_y": int(n_y),
-            "ci_low": round(ci[0], 4),
-            "ci_high": round(ci[1], 4),
-        })
+        rows.append(
+            {
+                "condition": cond,
+                "consistency": round(consistency, 4),
+                "coverage": round(coverage, 4),
+                "n_xy": a,
+                "n_y": int(n_y),
+                "ci_low": round(ci[0], 4),
+                "ci_high": round(ci[1], 4),
+            }
+        )
 
     return pd.DataFrame(rows)
 
@@ -122,14 +124,16 @@ def sufficiency(
             float(beta_dist.ppf(alpha_hi, post_a, post_b)),
         )
 
-        rows.append({
-            "condition": cond,
-            "consistency": round(consistency, 4),
-            "coverage": round(coverage, 4),
-            "n_x": int(x.sum()),
-            "n_xy": a,
-            "ci_low": round(ci[0], 4),
-            "ci_high": round(ci[1], 4),
-        })
+        rows.append(
+            {
+                "condition": cond,
+                "consistency": round(consistency, 4),
+                "coverage": round(coverage, 4),
+                "n_x": int(x.sum()),
+                "n_xy": a,
+                "ci_low": round(ci[0], 4),
+                "ci_high": round(ci[1], 4),
+            }
+        )
 
     return pd.DataFrame(rows)
