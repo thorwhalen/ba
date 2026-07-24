@@ -1,0 +1,4 @@
+ba.qca.necessity
+================
+.. automodule:: ba.qca.necessity
+   :members:

@@ -1,0 +1,4 @@
+ba.core.contingency
+===================
+.. automodule:: ba.core.contingency
+   :members:

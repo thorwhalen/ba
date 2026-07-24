@@ -1,0 +1,4 @@
+ba.bayesian.priors
+==================
+.. automodule:: ba.bayesian.priors
+   :members:

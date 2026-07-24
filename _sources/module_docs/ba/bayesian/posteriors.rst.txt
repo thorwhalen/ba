@@ -1,0 +1,4 @@
+ba.bayesian.posteriors
+======================
+.. automodule:: ba.bayesian.posteriors
+   :members:

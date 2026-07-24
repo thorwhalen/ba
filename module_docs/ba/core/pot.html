@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ba.core.pot &mdash; ba 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ba.qca" href="../qca.html" />
+    <link rel="prev" title="ba.core.metrics" href="metrics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ba
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ba.html">ba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian.html">ba.bayesian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/bayes_factors.html">ba.bayesian.bayes_factors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/posteriors.html">ba.bayesian.posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/priors.html">ba.bayesian.priors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/sensitivity.html">ba.bayesian.sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../binary.html">ba.binary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../binary/shortcuts.html">ba.binary.shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">ba.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">ba.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contingency.html">ba.core.contingency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">ba.core.metrics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ba.core.pot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ba.core.pot.from_contingency"><code class="docutils literal notranslate"><span class="pre">from_contingency()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ba.core.pot.to_contingency"><code class="docutils literal notranslate"><span class="pre">to_contingency()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../qca.html">ba.qca</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/calibrate.html">ba.qca.calibrate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/minimize.html">ba.qca.minimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/necessity.html">ba.qca.necessity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/truth_table.html">ba.qca.truth_table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules.html">ba.rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/encoding.html">ba.rules.encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/itemsets.html">ba.rules.itemsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/mining.html">ba.rules.mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sample_data.html">ba.sample_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store.html">ba.store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../warnings.html">ba.warnings</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ba</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ba.core.pot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/module_docs/ba/core/pot.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ba.core.pot">
+<span id="ba-core-pot"></span><h1>ba.core.pot<a class="headerlink" href="#module-ba.core.pot" title="Link to this heading"></a></h1>
+<p>Bridge between spyn’s Pot and ba’s ContingencyTable.</p>
+<p>Enables round-tripping between the algebraic world (Pot operators: <a href="#id1"><span class="problematic" id="id2">*</span></a>, /, [])
+and the metric-computation world (ContingencyTable with measure registry).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spyn.ppi.pot</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ba.core.contingency</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContingencyTable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ct</span> <span class="o">=</span> <span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_counts</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pot</span> <span class="o">=</span> <span class="n">from_contingency</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pot</span><span class="o">.</span><span class="n">n</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ct2</span> <span class="o">=</span> <span class="n">to_contingency</span><span class="p">(</span><span class="n">pot</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ct2</span><span class="o">.</span><span class="n">n</span>
+<span class="go">30</span>
+</pre></div>
+</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="ba.core.pot.from_contingency">
+<span class="sig-prename descclassname"><span class="pre">ba.core.pot.</span></span><span class="sig-name descname"><span class="pre">from_contingency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="contingency.html#ba.core.contingency.ContingencyTable" title="ba.core.contingency.ContingencyTable"><span class="pre">ContingencyTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Pot</span></span></span><a class="reference internal" href="../../../_modules/ba/core/pot.html#from_contingency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.pot.from_contingency" title="Link to this definition"></a></dt>
+<dd><p>Convert a ContingencyTable to a spyn Pot (count-based).</p>
+<p>The resulting Pot has two variables (row_var, col_var) and pval = counts.
+Labels are converted to numeric types where possible.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ba.core.contingency</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContingencyTable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ct</span> <span class="o">=</span> <span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_counts</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pot</span> <span class="o">=</span> <span class="n">from_contingency</span><span class="p">(</span><span class="n">ct</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pot</span><span class="o">.</span><span class="n">vars</span>
+<span class="go">[&#39;X&#39;, &#39;Y&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">int</span><span class="p">(</span><span class="n">pot</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="go">30</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ba.core.pot.to_contingency">
+<span class="sig-prename descclassname"><span class="pre">ba.core.pot.</span></span><span class="sig-name descname"><span class="pre">to_contingency</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pot</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="contingency.html#ba.core.contingency.ContingencyTable" title="ba.core.contingency.ContingencyTable"><span class="pre">ContingencyTable</span></a></span></span><a class="reference internal" href="../../../_modules/ba/core/pot.html#to_contingency"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.pot.to_contingency" title="Link to this definition"></a></dt>
+<dd><p>Convert a 2-variable Pot (count-based) to a ContingencyTable.</p>
+<p>The Pot must contain the two named variables. The pval column
+is interpreted as counts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pot</strong> – A spyn Pot with variables including row_var and col_var.</p></li>
+<li><p><strong>row_var</strong> – Name of the row variable.</p></li>
+<li><p><strong>col_var</strong> – Name of the column variable.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>ContingencyTable (or ContingencyTable2x2 if both variables are binary).</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">spyn.ppi.pot</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p</span> <span class="o">=</span> <span class="n">Pot</span><span class="p">({</span><span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;pval&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ct</span> <span class="o">=</span> <span class="n">to_contingency</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ct</span><span class="o">.</span><span class="n">n</span>
+<span class="go">30</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ct</span><span class="o">.</span><span class="n">is_2x2</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="metrics.html" class="btn btn-neutral float-left" title="ba.core.metrics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../qca.html" class="btn btn-neutral float-right" title="ba.qca" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

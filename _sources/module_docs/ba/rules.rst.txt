@@ -1,0 +1,4 @@
+ba.rules
+========
+.. automodule:: ba.rules
+   :members:

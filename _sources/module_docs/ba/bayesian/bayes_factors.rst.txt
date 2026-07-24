@@ -1,0 +1,4 @@
+ba.bayesian.bayes_factors
+=========================
+.. automodule:: ba.bayesian.bayes_factors
+   :members:

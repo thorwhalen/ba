@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ba.binary.shortcuts &mdash; ba 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ba.config" href="../config.html" />
+    <link rel="prev" title="ba.binary" href="../binary.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ba
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ba.html">ba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian.html">ba.bayesian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/bayes_factors.html">ba.bayesian.bayes_factors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/posteriors.html">ba.bayesian.posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/priors.html">ba.bayesian.priors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/sensitivity.html">ba.bayesian.sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../binary.html">ba.binary</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ba.binary.shortcuts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ba.binary.shortcuts.odds_ratio"><code class="docutils literal notranslate"><span class="pre">odds_ratio()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ba.binary.shortcuts.phi"><code class="docutils literal notranslate"><span class="pre">phi()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ba.binary.shortcuts.relative_risk"><code class="docutils literal notranslate"><span class="pre">relative_risk()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ba.binary.shortcuts.risk_difference"><code class="docutils literal notranslate"><span class="pre">risk_difference()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ba.binary.shortcuts.yules_q"><code class="docutils literal notranslate"><span class="pre">yules_q()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">ba.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">ba.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/contingency.html">ba.core.contingency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/metrics.html">ba.core.metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core/pot.html">ba.core.pot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca.html">ba.qca</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/calibrate.html">ba.qca.calibrate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/minimize.html">ba.qca.minimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/necessity.html">ba.qca.necessity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/truth_table.html">ba.qca.truth_table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules.html">ba.rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/encoding.html">ba.rules.encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/itemsets.html">ba.rules.itemsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/mining.html">ba.rules.mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sample_data.html">ba.sample_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store.html">ba.store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../warnings.html">ba.warnings</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ba</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ba.binary.shortcuts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/module_docs/ba/binary/shortcuts.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ba.binary.shortcuts">
+<span id="ba-binary-shortcuts"></span><h1>ba.binary.shortcuts<a class="headerlink" href="#module-ba.binary.shortcuts" title="Link to this heading"></a></h1>
+<p>Convenience functions for 2×2 table analysis.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="ba.binary.shortcuts.odds_ratio">
+<span class="sig-prename descclassname"><span class="pre">ba.binary.shortcuts.</span></span><span class="sig-name descname"><span class="pre">odds_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/contingency.html#ba.core.contingency.ContingencyTable" title="ba.core.contingency.ContingencyTable"><span class="pre">ContingencyTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/ba/binary/shortcuts.html#odds_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.binary.shortcuts.odds_ratio" title="Link to this definition"></a></dt>
+<dd><p>Odds ratio: ad / bc.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ba.core.contingency</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContingencyTable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">odds_ratio</span><span class="p">(</span><span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_counts</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="go">8.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ba.binary.shortcuts.phi">
+<span class="sig-prename descclassname"><span class="pre">ba.binary.shortcuts.</span></span><span class="sig-name descname"><span class="pre">phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/contingency.html#ba.core.contingency.ContingencyTable" title="ba.core.contingency.ContingencyTable"><span class="pre">ContingencyTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../../_modules/ba/binary/shortcuts.html#phi"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.binary.shortcuts.phi" title="Link to this definition"></a></dt>
+<dd><p>Phi coefficient.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ba.core.contingency</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContingencyTable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">phi</span><span class="p">(</span><span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_counts</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">0.471</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ba.binary.shortcuts.relative_risk">
+<span class="sig-prename descclassname"><span class="pre">ba.binary.shortcuts.</span></span><span class="sig-name descname"><span class="pre">relative_risk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/contingency.html#ba.core.contingency.ContingencyTable" title="ba.core.contingency.ContingencyTable"><span class="pre">ContingencyTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/ba/binary/shortcuts.html#relative_risk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.binary.shortcuts.relative_risk" title="Link to this definition"></a></dt>
+<dd><p>Relative risk: (a/(a+b)) / (c/(c+d)).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ba.core.contingency</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContingencyTable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rr</span> <span class="o">=</span> <span class="n">relative_risk</span><span class="p">(</span><span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_counts</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">3.333</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ba.binary.shortcuts.risk_difference">
+<span class="sig-prename descclassname"><span class="pre">ba.binary.shortcuts.</span></span><span class="sig-name descname"><span class="pre">risk_difference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/contingency.html#ba.core.contingency.ContingencyTable" title="ba.core.contingency.ContingencyTable"><span class="pre">ContingencyTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../../../_modules/ba/binary/shortcuts.html#risk_difference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.binary.shortcuts.risk_difference" title="Link to this definition"></a></dt>
+<dd><p>Risk difference: a/(a+b) - c/(c+d).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ba.core.contingency</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContingencyTable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">risk_difference</span><span class="p">(</span><span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_counts</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">0.467</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="ba.binary.shortcuts.yules_q">
+<span class="sig-prename descclassname"><span class="pre">ba.binary.shortcuts.</span></span><span class="sig-name descname"><span class="pre">yules_q</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ct</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../core/contingency.html#ba.core.contingency.ContingencyTable" title="ba.core.contingency.ContingencyTable"><span class="pre">ContingencyTable</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/ba/binary/shortcuts.html#yules_q"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.binary.shortcuts.yules_q" title="Link to this definition"></a></dt>
+<dd><p>Yule’s Q: (ad - bc) / (ad + bc).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ba.core.contingency</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContingencyTable</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">round</span><span class="p">(</span><span class="n">yules_q</span><span class="p">(</span><span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_counts</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">)),</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">0.778</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../binary.html" class="btn btn-neutral float-left" title="ba.binary" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../config.html" class="btn btn-neutral float-right" title="ba.config" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

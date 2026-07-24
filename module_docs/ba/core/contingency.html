@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ba.core.contingency &mdash; ba 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="ba.core.metrics" href="metrics.html" />
+    <link rel="prev" title="ba.core" href="../core.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ba
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ba.html">ba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian.html">ba.bayesian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/bayes_factors.html">ba.bayesian.bayes_factors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/posteriors.html">ba.bayesian.posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/priors.html">ba.bayesian.priors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bayesian/sensitivity.html">ba.bayesian.sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../binary.html">ba.binary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../binary/shortcuts.html">ba.binary.shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">ba.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../core.html">ba.core</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ba.core.contingency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ba.core.contingency.ContingencyTable"><code class="docutils literal notranslate"><span class="pre">ContingencyTable</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable.as_2x2"><code class="docutils literal notranslate"><span class="pre">ContingencyTable.as_2x2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable.expected"><code class="docutils literal notranslate"><span class="pre">ContingencyTable.expected</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable.from_counts"><code class="docutils literal notranslate"><span class="pre">ContingencyTable.from_counts()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable.from_dataframe"><code class="docutils literal notranslate"><span class="pre">ContingencyTable.from_dataframe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable.metrics"><code class="docutils literal notranslate"><span class="pre">ContingencyTable.metrics()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable.n"><code class="docutils literal notranslate"><span class="pre">ContingencyTable.n</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable.summary"><code class="docutils literal notranslate"><span class="pre">ContingencyTable.summary()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable.to_dataframe"><code class="docutils literal notranslate"><span class="pre">ContingencyTable.to_dataframe()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable.to_pot"><code class="docutils literal notranslate"><span class="pre">ContingencyTable.to_pot()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.as_2x2"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.as_2x2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.fisher_p"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.fisher_p</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.log_odds_ratio"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.log_odds_ratio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.odds_ratio"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.odds_ratio</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.phi"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.phi</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.qca_consistency"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.qca_consistency</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.qca_coverage"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.qca_coverage</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.relative_risk"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.relative_risk</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.risk_difference"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.risk_difference</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2.yules_q"><code class="docutils literal notranslate"><span class="pre">ContingencyTable2x2.yules_q</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="metrics.html">ba.core.metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pot.html">ba.core.pot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca.html">ba.qca</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/calibrate.html">ba.qca.calibrate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/minimize.html">ba.qca.minimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/necessity.html">ba.qca.necessity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qca/truth_table.html">ba.qca.truth_table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules.html">ba.rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/encoding.html">ba.rules.encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/itemsets.html">ba.rules.itemsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../rules/mining.html">ba.rules.mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sample_data.html">ba.sample_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../store.html">ba.store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../warnings.html">ba.warnings</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ba</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">ba.core.contingency</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/module_docs/ba/core/contingency.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-ba.core.contingency">
+<span id="ba-core-contingency"></span><h1>ba.core.contingency<a class="headerlink" href="#module-ba.core.contingency" title="Link to this heading"></a></h1>
+<p>Contingency tables: the universal input for all ba analyses.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ba.core.contingency.</span></span><span class="sig-name descname"><span class="pre">ContingencyTable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">counts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable" title="Link to this definition"></a></dt>
+<dd><p>An r×c contingency table with metadata.</p>
+<p>The universal input for all analyses in ba. Wraps an r×c numpy array of
+integer counts with variable names and level labels.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ct</span> <span class="o">=</span> <span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;X&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]}),</span> <span class="s1">&#39;X&#39;</span><span class="p">,</span> <span class="s1">&#39;Y&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ct</span><span class="o">.</span><span class="n">n</span>
+<span class="go">5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ct</span><span class="o">.</span><span class="n">is_2x2</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable.as_2x2">
+<span class="sig-name descname"><span class="pre">as_2x2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2" title="ba.core.contingency.ContingencyTable2x2"><span class="pre">ContingencyTable2x2</span></a></span></span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable.as_2x2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable.as_2x2" title="Link to this definition"></a></dt>
+<dd><p>Convert to 2×2 specialization.</p>
+<p>Raises ValueError with guidance if the table is not 2×2.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable.expected">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">expected</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable.expected" title="Link to this definition"></a></dt>
+<dd><p>Expected counts under independence.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable.from_counts">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'X'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('1',</span> <span class="pre">'0')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('1',</span> <span class="pre">'0')</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2" title="ba.core.contingency.ContingencyTable2x2"><span class="pre">ContingencyTable2x2</span></a></span></span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable.from_counts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable.from_counts" title="Link to this definition"></a></dt>
+<dd><p>Construct a 2×2 table directly from cell counts.</p>
+<dl>
+<dt>Layout:</dt><dd><blockquote>
+<div><p>Y=1  Y=0</p>
+</div></blockquote>
+<p>X=1 [  a    b ]
+X=0 [  c    d ]</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_counts</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">odds_ratio</span>
+<span class="go">8.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable.from_dataframe">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_dataframe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ba.core.contingency.ContingencyTable" title="ba.core.contingency.ContingencyTable"><span class="pre">ContingencyTable</span></a></span></span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable.from_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable.from_dataframe" title="Link to this definition"></a></dt>
+<dd><p>Cross-tabulate two columns of a DataFrame.</p>
+<p>Returns a ContingencyTable2x2 if both variables have exactly 2 levels.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable.metrics">
+<span class="sig-name descname"><span class="pre">metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">measures</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'default'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable.metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable.metrics" title="Link to this definition"></a></dt>
+<dd><p>Compute metrics via the global measure registry.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable.n">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">n</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable.n" title="Link to this definition"></a></dt>
+<dd><p>Grand total of all counts.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable.summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable.summary" title="Link to this definition"></a></dt>
+<dd><p>One-row-per-metric summary DataFrame.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable.to_dataframe">
+<span class="sig-name descname"><span class="pre">to_dataframe</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable.to_dataframe"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable.to_dataframe" title="Link to this definition"></a></dt>
+<dd><p>Labeled DataFrame representation of the table.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable.to_pot">
+<span class="sig-name descname"><span class="pre">to_pot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable.to_pot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable.to_pot" title="Link to this definition"></a></dt>
+<dd><p>Convert to a spyn Pot (count-based). Requires spyn.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ct</span> <span class="o">=</span> <span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_counts</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pot</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">to_pot</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pot</span><span class="o">.</span><span class="n">n</span>
+<span class="go">4</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">ba.core.contingency.</span></span><span class="sig-name descname"><span class="pre">ContingencyTable2x2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'X'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_var</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Y'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">row_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('1',</span> <span class="pre">'0')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_labels</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('1',</span> <span class="pre">'0')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable2x2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2" title="Link to this definition"></a></dt>
+<dd><p>A 2×2 contingency table with binary-specific metrics.</p>
+<dl>
+<dt>Layout:</dt><dd><blockquote>
+<div><p>col=1  col=0</p>
+</div></blockquote>
+<p>row=1 [  a    b ]    row_total = a + b
+row=0 [  c    d ]    row_total = c + d</p>
+</dd>
+</dl>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">ContingencyTable2x2</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">odds_ratio</span>
+<span class="go">8.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span><span class="o">.</span><span class="n">phi</span>
+<span class="go">0.470...</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.as_2x2">
+<span class="sig-name descname"><span class="pre">as_2x2</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#ba.core.contingency.ContingencyTable2x2" title="ba.core.contingency.ContingencyTable2x2"><span class="pre">ContingencyTable2x2</span></a></span></span><a class="reference internal" href="../../../_modules/ba/core/contingency.html#ContingencyTable2x2.as_2x2"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.as_2x2" title="Link to this definition"></a></dt>
+<dd><p>Convert to 2×2 specialization.</p>
+<p>Raises ValueError with guidance if the table is not 2×2.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.fisher_p">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">fisher_p</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.fisher_p" title="Link to this definition"></a></dt>
+<dd><p>Two-sided Fisher’s exact test p-value.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.log_odds_ratio">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">log_odds_ratio</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.log_odds_ratio" title="Link to this definition"></a></dt>
+<dd><p>Natural log of the odds ratio. None if undefined.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.odds_ratio">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">odds_ratio</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.odds_ratio" title="Link to this definition"></a></dt>
+<dd><p>ad / bc. None if b=0 or c=0.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.phi">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">phi</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.phi" title="Link to this definition"></a></dt>
+<dd><p>(ad - bc) / sqrt((a+b)(c+d)(a+c)(b+d)).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Phi coefficient</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.qca_consistency">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">qca_consistency</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.qca_consistency" title="Link to this definition"></a></dt>
+<dd><p>a / (a + b) = P(Y|X).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Consistency of sufficiency</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.qca_coverage">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">qca_coverage</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.qca_coverage" title="Link to this definition"></a></dt>
+<dd><p>a / (a + c) = P(X|Y).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Coverage of sufficiency</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.relative_risk">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">relative_risk</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.relative_risk" title="Link to this definition"></a></dt>
+<dd><p>a/(a+b) divided by c/(c+d). None if c+d=0 or c=0.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.risk_difference">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">risk_difference</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.risk_difference" title="Link to this definition"></a></dt>
+<dd><p>a/(a+b) - c/(c+d).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="ba.core.contingency.ContingencyTable2x2.yules_q">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">yules_q</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><a class="headerlink" href="#ba.core.contingency.ContingencyTable2x2.yules_q" title="Link to this definition"></a></dt>
+<dd><p>(ad - bc) / (ad + bc). None if ad + bc = 0.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../core.html" class="btn btn-neutral float-left" title="ba.core" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="metrics.html" class="btn btn-neutral float-right" title="ba.core.metrics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

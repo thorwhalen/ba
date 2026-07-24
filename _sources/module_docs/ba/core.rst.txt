@@ -1,0 +1,4 @@
+ba.core
+=======
+.. automodule:: ba.core
+   :members:

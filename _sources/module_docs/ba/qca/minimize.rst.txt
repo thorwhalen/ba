@@ -1,0 +1,4 @@
+ba.qca.minimize
+===============
+.. automodule:: ba.qca.minimize
+   :members:

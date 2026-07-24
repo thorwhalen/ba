@@ -1,0 +1,4 @@
+ba.rules.encoding
+=================
+.. automodule:: ba.rules.encoding
+   :members:

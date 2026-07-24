@@ -1,0 +1,416 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ba.qca.minimize &mdash; ba 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ba
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba.html">ba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian.html">ba.bayesian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/bayes_factors.html">ba.bayesian.bayes_factors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/posteriors.html">ba.bayesian.posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/priors.html">ba.bayesian.priors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/sensitivity.html">ba.bayesian.sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/binary.html">ba.binary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/binary/shortcuts.html">ba.binary.shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/config.html">ba.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core.html">ba.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core/contingency.html">ba.core.contingency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core/metrics.html">ba.core.metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core/pot.html">ba.core.pot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca.html">ba.qca</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/calibrate.html">ba.qca.calibrate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/minimize.html">ba.qca.minimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/necessity.html">ba.qca.necessity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/truth_table.html">ba.qca.truth_table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules.html">ba.rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules/encoding.html">ba.rules.encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules/itemsets.html">ba.rules.itemsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules/mining.html">ba.rules.mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/sample_data.html">ba.sample_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/store.html">ba.store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/warnings.html">ba.warnings</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ba</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ba.html">ba</a></li>
+      <li class="breadcrumb-item active">ba.qca.minimize</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ba.qca.minimize</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Boolean minimization via the Quine-McCluskey algorithm.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+
+<div class="viewcode-block" id="QCASolution">
+<a class="viewcode-back" href="../../../module_docs/ba/qca/minimize.html#ba.qca.minimize.QCASolution">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">QCASolution</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Result of Boolean minimization.</span>
+
+<span class="sd">    &gt;&gt;&gt; sol = QCASolution(</span>
+<span class="sd">    ...     expression=&#39;A*B + ~A*C&#39;,</span>
+<span class="sd">    ...     prime_implicants=[{&#39;A&#39;: 1, &#39;B&#39;: 1}, {&#39;A&#39;: 0, &#39;C&#39;: 1}],</span>
+<span class="sd">    ...     essential_implicants=[{&#39;A&#39;: 1, &#39;B&#39;: 1}],</span>
+<span class="sd">    ...     coverage={&#39;A*B&#39;: [0, 1], &#39;~A*C&#39;: [2]},</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; sol.expression</span>
+<span class="sd">    &#39;A*B + ~A*C&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">expression</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">prime_implicants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]]</span>
+    <span class="n">essential_implicants</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]]</span>
+    <span class="n">coverage</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QCASolution.to_dataframe">
+<a class="viewcode-back" href="../../../module_docs/ba/qca/minimize.html#ba.qca.minimize.QCASolution.to_dataframe">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">to_dataframe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Prime implicant chart as a DataFrame.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prime_implicants</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;QCASolution(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">expression</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="minimize">
+<a class="viewcode-back" href="../../../module_docs/ba/qca/minimize.html#ba.qca.minimize.minimize">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">minimize</span><span class="p">(</span>
+    <span class="n">tt</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">outcome_col</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;OUT&quot;</span><span class="p">,</span>
+    <span class="n">conditions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">include</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;qmc&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QCASolution</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Minimize a truth table using Quine-McCluskey.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        tt: Truth table (output of ``ba.qca.truth_table``).</span>
+<span class="sd">        outcome_col: Column marking positive (1), negative (0), or</span>
+<span class="sd">            don&#39;t-care (&#39;C&#39;/&#39;?&#39;) rows.</span>
+<span class="sd">        conditions: Condition column names. If None, inferred as all</span>
+<span class="sd">            columns except ``outcome_col``, ``n``, ``consistency``, ``flag``.</span>
+<span class="sd">        include: Which rows to include as positive:</span>
+<span class="sd">            ``&#39;1&#39;`` = only positive rows;</span>
+<span class="sd">            ``&#39;?&#39;`` or ``&#39;C&#39;`` = also include don&#39;t-care/remainder rows.</span>
+<span class="sd">        method: ``&#39;qmc&#39;`` for Quine-McCluskey (only option currently).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        QCASolution with minimized Boolean expression.</span>
+
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt; tt = pd.DataFrame({</span>
+<span class="sd">    ...     &#39;A&#39;: [0, 0, 1, 1], &#39;B&#39;: [0, 1, 0, 1],</span>
+<span class="sd">    ...     &#39;OUT&#39;: [0, 1, 1, 1], &#39;n&#39;: [3, 2, 2, 4],</span>
+<span class="sd">    ...     &#39;consistency&#39;: [0.0, 1.0, 1.0, 1.0], &#39;flag&#39;: [&#39;&#39;, &#39;&#39;, &#39;&#39;, &#39;&#39;],</span>
+<span class="sd">    ... })</span>
+<span class="sd">    &gt;&gt;&gt; sol = minimize(tt)</span>
+<span class="sd">    &gt;&gt;&gt; &#39;A&#39; in sol.expression or &#39;B&#39; in sol.expression</span>
+<span class="sd">    True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">meta_cols</span> <span class="o">=</span> <span class="p">{</span><span class="n">outcome_col</span><span class="p">,</span> <span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;consistency&quot;</span><span class="p">,</span> <span class="s2">&quot;flag&quot;</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">conditions</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">conditions</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">tt</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">meta_cols</span><span class="p">]</span>
+
+    <span class="c1"># Collect minterms and don&#39;t-cares</span>
+    <span class="n">minterms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dontcares</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">tt</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="n">outcome_col</span><span class="p">]</span>
+        <span class="n">bits</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="n">c</span><span class="p">])</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">conditions</span><span class="p">)</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">_bits_to_int</span><span class="p">(</span><span class="n">bits</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">out</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">out</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+            <span class="n">minterms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">include</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">out</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;?&quot;</span><span class="p">,</span> <span class="s2">&quot;R&quot;</span><span class="p">):</span>
+            <span class="n">dontcares</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">minterms</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">QCASolution</span><span class="p">(</span>
+            <span class="n">expression</span><span class="o">=</span><span class="s2">&quot;0 (no positive rows)&quot;</span><span class="p">,</span>
+            <span class="n">prime_implicants</span><span class="o">=</span><span class="p">[],</span>
+            <span class="n">essential_implicants</span><span class="o">=</span><span class="p">[],</span>
+        <span class="p">)</span>
+
+    <span class="n">n_vars</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span>
+    <span class="n">primes</span> <span class="o">=</span> <span class="n">_quine_mccluskey</span><span class="p">(</span><span class="n">minterms</span><span class="p">,</span> <span class="n">dontcares</span><span class="p">,</span> <span class="n">n_vars</span><span class="p">)</span>
+    <span class="n">essentials</span><span class="p">,</span> <span class="n">cover</span> <span class="o">=</span> <span class="n">_select_essential</span><span class="p">(</span><span class="n">primes</span><span class="p">,</span> <span class="n">minterms</span><span class="p">)</span>
+
+    <span class="c1"># Format expression</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="n">_implicant_to_expr</span><span class="p">(</span><span class="n">imp</span><span class="p">,</span> <span class="n">conditions</span><span class="p">)</span> <span class="k">for</span> <span class="n">imp</span> <span class="ow">in</span> <span class="n">essentials</span><span class="p">]</span>
+    <span class="n">expression</span> <span class="o">=</span> <span class="s2">&quot; + &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span> <span class="k">if</span> <span class="n">terms</span> <span class="k">else</span> <span class="s2">&quot;0&quot;</span>
+
+    <span class="c1"># Convert implicants to dicts</span>
+    <span class="n">prime_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">_implicant_to_dict</span><span class="p">(</span><span class="n">imp</span><span class="p">,</span> <span class="n">conditions</span><span class="p">)</span> <span class="k">for</span> <span class="n">imp</span> <span class="ow">in</span> <span class="n">primes</span><span class="p">]</span>
+    <span class="n">essential_dicts</span> <span class="o">=</span> <span class="p">[</span><span class="n">_implicant_to_dict</span><span class="p">(</span><span class="n">imp</span><span class="p">,</span> <span class="n">conditions</span><span class="p">)</span> <span class="k">for</span> <span class="n">imp</span> <span class="ow">in</span> <span class="n">essentials</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">QCASolution</span><span class="p">(</span>
+        <span class="n">expression</span><span class="o">=</span><span class="n">expression</span><span class="p">,</span>
+        <span class="n">prime_implicants</span><span class="o">=</span><span class="n">prime_dicts</span><span class="p">,</span>
+        <span class="n">essential_implicants</span><span class="o">=</span><span class="n">essential_dicts</span><span class="p">,</span>
+        <span class="n">coverage</span><span class="o">=</span><span class="n">cover</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+<span class="c1"># ---------------------------------------------------------------------------</span>
+<span class="c1"># Quine-McCluskey internals</span>
+<span class="c1"># ---------------------------------------------------------------------------</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_bits_to_int</span><span class="p">(</span><span class="n">bits</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a tuple of bits to an integer. MSB first.&quot;&quot;&quot;</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">bits</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">|</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_count_ones</span><span class="p">(</span><span class="n">n</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">return</span> <span class="nb">bin</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s2">&quot;1&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_quine_mccluskey</span><span class="p">(</span>
+    <span class="n">minterms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">dontcares</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+    <span class="n">n_vars</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Core QMC: find all prime implicants.</span>
+
+<span class="sd">    Each implicant is (covered_minterms, pattern) where pattern is a tuple</span>
+<span class="sd">    of 0, 1, or None (don&#39;t-care bit).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">all_terms</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">minterms</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">dontcares</span><span class="p">)</span>
+
+    <span class="c1"># Initialize: each minterm is a group-0 implicant</span>
+    <span class="n">groups</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">all_terms</span><span class="p">:</span>
+        <span class="n">ones</span> <span class="o">=</span> <span class="n">_count_ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">m</span> <span class="o">&gt;&gt;</span> <span class="p">(</span><span class="n">n_vars</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_vars</span><span class="p">))</span>
+        <span class="n">groups</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">ones</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="nb">frozenset</span><span class="p">([</span><span class="n">m</span><span class="p">]),</span> <span class="n">pattern</span><span class="p">))</span>
+
+    <span class="n">primes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="n">groups</span><span class="p">:</span>
+        <span class="n">new_groups</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">used</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="n">sorted_keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">groups</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sorted_keys</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">k1</span> <span class="o">=</span> <span class="n">sorted_keys</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">k2</span> <span class="o">=</span> <span class="n">sorted_keys</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">k2</span> <span class="o">-</span> <span class="n">k1</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="k">for</span> <span class="n">idx1</span><span class="p">,</span> <span class="p">(</span><span class="n">mints1</span><span class="p">,</span> <span class="n">pat1</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="n">k1</span><span class="p">]):</span>
+                <span class="k">for</span> <span class="n">idx2</span><span class="p">,</span> <span class="p">(</span><span class="n">mints2</span><span class="p">,</span> <span class="n">pat2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="n">k2</span><span class="p">]):</span>
+                    <span class="n">combined</span> <span class="o">=</span> <span class="n">_try_combine</span><span class="p">(</span><span class="n">pat1</span><span class="p">,</span> <span class="n">pat2</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">combined</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                        <span class="n">used</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">k1</span><span class="p">,</span> <span class="n">idx1</span><span class="p">))</span>
+                        <span class="n">used</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">k2</span><span class="p">,</span> <span class="n">idx2</span><span class="p">))</span>
+                        <span class="n">merged_mints</span> <span class="o">=</span> <span class="n">mints1</span> <span class="o">|</span> <span class="n">mints2</span>
+                        <span class="n">entry</span> <span class="o">=</span> <span class="p">(</span><span class="n">merged_mints</span><span class="p">,</span> <span class="n">combined</span><span class="p">)</span>
+                        <span class="n">new_groups</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k1</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span>
+
+        <span class="c1"># Collect unused implicants as primes</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">imps</span> <span class="ow">in</span> <span class="n">groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">imp</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">imps</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">idx</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">used</span><span class="p">:</span>
+                    <span class="n">primes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">imp</span><span class="p">)</span>
+
+        <span class="c1"># Deduplicate new groups</span>
+        <span class="n">deduped</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]]]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">imps</span> <span class="ow">in</span> <span class="n">new_groups</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">mints</span><span class="p">,</span> <span class="n">pat</span> <span class="ow">in</span> <span class="n">imps</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">pat</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                    <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pat</span><span class="p">)</span>
+                    <span class="n">deduped</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">mints</span><span class="p">,</span> <span class="n">pat</span><span class="p">))</span>
+
+        <span class="n">groups</span> <span class="o">=</span> <span class="n">deduped</span>
+
+    <span class="k">return</span> <span class="n">primes</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_try_combine</span><span class="p">(</span>
+    <span class="n">pat1</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+    <span class="n">pat2</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Combine two patterns differing in exactly one position.&quot;&quot;&quot;</span>
+    <span class="n">diff_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pat1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pat1</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">pat1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">pat2</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">pat1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">pat2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="n">diff_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">diff_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">diff_count</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_select_essential</span><span class="p">(</span>
+    <span class="n">primes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]]],</span>
+    <span class="n">minterms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span>
+    <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]]],</span>
+    <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]],</span>
+<span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Select essential prime implicants via a greedy cover.&quot;&quot;&quot;</span>
+    <span class="n">remaining</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">minterms</span><span class="p">)</span>
+    <span class="n">selected</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">coverage_map</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="c1"># Find essential primes (only prime covering a minterm)</span>
+    <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">remaining</span><span class="p">):</span>
+        <span class="n">covering</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">primes</span> <span class="k">if</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">covering</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">covering</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">selected</span><span class="p">:</span>
+                <span class="n">selected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+                <span class="n">remaining</span> <span class="o">-=</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Greedy cover for remaining minterms</span>
+    <span class="k">while</span> <span class="n">remaining</span><span class="p">:</span>
+        <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">primes</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">p</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">remaining</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">remaining</span><span class="p">):</span>
+            <span class="k">break</span>
+        <span class="n">selected</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">best</span><span class="p">)</span>
+        <span class="n">remaining</span> <span class="o">-=</span> <span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="c1"># Build coverage dict</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">selected</span><span class="p">:</span>
+        <span class="n">expr</span> <span class="o">=</span> <span class="n">_implicant_to_expr</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;v</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]))])</span>
+        <span class="n">coverage_map</span><span class="p">[</span><span class="n">expr</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">minterms</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">selected</span><span class="p">,</span> <span class="n">coverage_map</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_implicant_to_expr</span><span class="p">(</span>
+    <span class="n">pattern</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">conditions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Format a pattern tuple as a Boolean expression.&quot;&quot;&quot;</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pattern</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">conditions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;v</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;~</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s2">&quot;*&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span> <span class="k">if</span> <span class="n">terms</span> <span class="k">else</span> <span class="s2">&quot;1&quot;</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_implicant_to_dict</span><span class="p">(</span>
+    <span class="n">imp</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">frozenset</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">...</span><span class="p">]],</span>
+    <span class="n">conditions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert implicant pattern to a {condition: value} dict.&quot;&quot;&quot;</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">pattern</span> <span class="o">=</span> <span class="n">imp</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="n">conditions</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span> <span class="n">v</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">conditions</span><span class="p">)</span>
+    <span class="p">}</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

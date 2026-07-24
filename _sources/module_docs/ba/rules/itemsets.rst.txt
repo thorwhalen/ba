@@ -1,0 +1,4 @@
+ba.rules.itemsets
+=================
+.. automodule:: ba.rules.itemsets
+   :members:

@@ -1,0 +1,29 @@
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+   module_docs/ba
+   module_docs/ba/bayesian
+   module_docs/ba/bayesian/bayes_factors
+   module_docs/ba/bayesian/posteriors
+   module_docs/ba/bayesian/priors
+   module_docs/ba/bayesian/sensitivity
+   module_docs/ba/binary
+   module_docs/ba/binary/shortcuts
+   module_docs/ba/config
+   module_docs/ba/core
+   module_docs/ba/core/contingency
+   module_docs/ba/core/metrics
+   module_docs/ba/core/pot
+   module_docs/ba/qca
+   module_docs/ba/qca/calibrate
+   module_docs/ba/qca/minimize
+   module_docs/ba/qca/necessity
+   module_docs/ba/qca/truth_table
+   module_docs/ba/rules
+   module_docs/ba/rules/encoding
+   module_docs/ba/rules/itemsets
+   module_docs/ba/rules/mining
+   module_docs/ba/sample_data
+   module_docs/ba/store
+   module_docs/ba/warnings

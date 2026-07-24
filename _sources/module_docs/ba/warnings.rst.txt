@@ -1,0 +1,4 @@
+ba.warnings
+===========
+.. automodule:: ba.warnings
+   :members:

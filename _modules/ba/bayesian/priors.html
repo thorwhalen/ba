@@ -1,0 +1,295 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ba.bayesian.priors &mdash; ba 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ba
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba.html">ba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian.html">ba.bayesian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/bayes_factors.html">ba.bayesian.bayes_factors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/posteriors.html">ba.bayesian.posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/priors.html">ba.bayesian.priors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/sensitivity.html">ba.bayesian.sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/binary.html">ba.binary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/binary/shortcuts.html">ba.binary.shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/config.html">ba.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core.html">ba.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core/contingency.html">ba.core.contingency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core/metrics.html">ba.core.metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core/pot.html">ba.core.pot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca.html">ba.qca</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/calibrate.html">ba.qca.calibrate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/minimize.html">ba.qca.minimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/necessity.html">ba.qca.necessity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/truth_table.html">ba.qca.truth_table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules.html">ba.rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules/encoding.html">ba.rules.encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules/itemsets.html">ba.rules.itemsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules/mining.html">ba.rules.mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/sample_data.html">ba.sample_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/store.html">ba.store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/warnings.html">ba.warnings</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ba</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ba.html">ba</a></li>
+      <li class="breadcrumb-item active">ba.bayesian.priors</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ba.bayesian.priors</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Prior construction helpers for Beta and Dirichlet distributions.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">minimize</span> <span class="k">as</span> <span class="n">scipy_minimize</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">beta</span> <span class="k">as</span> <span class="n">beta_dist</span>
+
+
+<div class="viewcode-block" id="jeffreys">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/priors.html#ba.bayesian.priors.jeffreys">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">jeffreys</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Jeffreys prior: Dirichlet(0.5, ..., 0.5).</span>
+
+<span class="sd">    For k=2, this is Beta(0.5, 0.5).</span>
+
+<span class="sd">    &gt;&gt;&gt; jeffreys()</span>
+<span class="sd">    array([0.5, 0.5])</span>
+<span class="sd">    &gt;&gt;&gt; jeffreys(3)</span>
+<span class="sd">    array([0.5, 0.5, 0.5])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="uniform">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/priors.html#ba.bayesian.priors.uniform">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">uniform</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Uniform (Bayes-Laplace) prior: Dirichlet(1, ..., 1).</span>
+
+<span class="sd">    For k=2, this is Beta(1, 1).</span>
+
+<span class="sd">    &gt;&gt;&gt; uniform()</span>
+<span class="sd">    array([1., 1.])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">k</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="from_mean_kappa">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/priors.html#ba.bayesian.priors.from_mean_kappa">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">from_mean_kappa</span><span class="p">(</span><span class="n">mean</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Construct prior from mean and concentration (κ = α + β).</span>
+
+<span class="sd">    κ = 2 gives uniform; κ = 50 gives a strongly informative prior.</span>
+<span class="sd">    The &quot;equivalent sample size&quot; is κ.</span>
+
+<span class="sd">    &gt;&gt;&gt; from_mean_kappa(0.3, 10)</span>
+<span class="sd">    array([3., 7.])</span>
+<span class="sd">    &gt;&gt;&gt; from_mean_kappa(0.5, 2)</span>
+<span class="sd">    array([1., 1.])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">mean</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># Scalar mean: return Beta(mean*kappa, (1-mean)*kappa)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">mean</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">),</span> <span class="nb">float</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mean</span><span class="p">)</span> <span class="o">*</span> <span class="n">kappa</span><span class="p">)])</span>
+    <span class="k">return</span> <span class="n">mean</span> <span class="o">*</span> <span class="n">kappa</span></div>
+
+
+
+<div class="viewcode-block" id="from_quantiles">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/priors.html#ba.bayesian.priors.from_quantiles">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">from_quantiles</span><span class="p">(</span>
+    <span class="n">q1</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">q2</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">p2</span><span class="p">:</span> <span class="nb">float</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Solve for Beta(α, β) matching P(θ &lt; q1) = p1 and P(θ &lt; q2) = p2.</span>
+
+<span class="sd">    Uses least-squares minimization in log-space for numerical stability.</span>
+
+<span class="sd">    &gt;&gt;&gt; a, b = from_quantiles(0.2, 0.05, 0.6, 0.95)</span>
+<span class="sd">    &gt;&gt;&gt; 1.0 &lt; a &lt; 10.0</span>
+<span class="sd">    True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">objective</span><span class="p">(</span><span class="n">log_ab</span><span class="p">):</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">log_ab</span><span class="p">)</span>
+        <span class="n">r1</span> <span class="o">=</span> <span class="n">beta_dist</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">q1</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">p1</span>
+        <span class="n">r2</span> <span class="o">=</span> <span class="n">beta_dist</span><span class="o">.</span><span class="n">cdf</span><span class="p">(</span><span class="n">q2</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="n">p2</span>
+        <span class="k">return</span> <span class="n">r1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">r2</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="n">res</span> <span class="o">=</span> <span class="n">scipy_minimize</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)],</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;Nelder-Mead&quot;</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">b</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="from_counts">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/priors.html#ba.bayesian.priors.from_counts">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">from_counts</span><span class="p">(</span><span class="n">successes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">failures</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;&#39;Imaginary data&#39; framing: Beta(successes + 1, failures + 1).</span>
+
+<span class="sd">    &quot;Think of the prior as having already seen these imaginary outcomes.&quot;</span>
+
+<span class="sd">    &gt;&gt;&gt; from_counts(2, 8)</span>
+<span class="sd">    (3, 9)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">successes</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">failures</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="resolve_prior">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/priors.html#ba.bayesian.priors.resolve_prior">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">resolve_prior</span><span class="p">(</span>
+    <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resolve a prior specification to a Dirichlet parameter array.</span>
+
+<span class="sd">    Accepts:</span>
+<span class="sd">      - &#39;jeffreys&#39;, &#39;uniform&#39;, &#39;haldane&#39;</span>
+<span class="sd">      - &#39;beta(a,b)&#39; for k=2</span>
+<span class="sd">      - tuple (a, b) for k=2</span>
+<span class="sd">      - numpy array of length k</span>
+
+<span class="sd">    &gt;&gt;&gt; resolve_prior(&#39;jeffreys&#39;)</span>
+<span class="sd">    array([0.5, 0.5])</span>
+<span class="sd">    &gt;&gt;&gt; resolve_prior(&#39;beta(2,3)&#39;)</span>
+<span class="sd">    array([2., 3.])</span>
+<span class="sd">    &gt;&gt;&gt; resolve_prior((1, 1))</span>
+<span class="sd">    array([1., 1.])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">prior</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">jeffreys</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prior</span><span class="p">)</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prior array length </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">prior</span><span class="p">)</span><span class="si">}</span><span class="s2"> != k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">prior</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prior length </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="si">}</span><span class="s2"> != k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">arr</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">prior_lower</span> <span class="o">=</span> <span class="n">prior</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">prior_lower</span> <span class="o">==</span> <span class="s2">&quot;jeffreys&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">jeffreys</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prior_lower</span> <span class="o">==</span> <span class="s2">&quot;uniform&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">uniform</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">prior_lower</span> <span class="o">==</span> <span class="s2">&quot;haldane&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="mf">1e-10</span><span class="p">)</span>
+        <span class="c1"># Parse &#39;beta(a,b)&#39; or &#39;dirichlet(a1,a2,...)&#39;</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;beta\(\s*([\d.]+)\s*,\s*([\d.]+)\s*\)&quot;</span><span class="p">,</span> <span class="n">prior_lower</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&#39;beta(a,b)&#39; only valid for k=2, got k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">2</span><span class="p">))])</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;dirichlet\((.+)\)&quot;</span><span class="p">,</span> <span class="n">prior_lower</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+            <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)]</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span> <span class="o">!=</span> <span class="n">k</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dirichlet(</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span><span class="si">}</span><span class="s2"> params) != k=</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Unknown prior &#39;</span><span class="si">{</span><span class="n">prior</span><span class="si">}</span><span class="s2">&#39;. Use &#39;jeffreys&#39;, &#39;uniform&#39;, &#39;haldane&#39;, &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;&#39;beta(a,b)&#39;, &#39;dirichlet(a1,...)&#39;, a tuple, or a numpy array.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Cannot resolve prior of type </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">prior</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

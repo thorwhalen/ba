@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ba.store &mdash; ba 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            ba
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba.html">ba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/bayesian.html">ba.bayesian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/bayesian/bayes_factors.html">ba.bayesian.bayes_factors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/bayesian/posteriors.html">ba.bayesian.posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/bayesian/priors.html">ba.bayesian.priors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/bayesian/sensitivity.html">ba.bayesian.sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/binary.html">ba.binary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/binary/shortcuts.html">ba.binary.shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/config.html">ba.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/core.html">ba.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/core/contingency.html">ba.core.contingency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/core/metrics.html">ba.core.metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/core/pot.html">ba.core.pot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/qca.html">ba.qca</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/qca/calibrate.html">ba.qca.calibrate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/qca/minimize.html">ba.qca.minimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/qca/necessity.html">ba.qca.necessity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/qca/truth_table.html">ba.qca.truth_table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/rules.html">ba.rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/rules/encoding.html">ba.rules.encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/rules/itemsets.html">ba.rules.itemsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/rules/mining.html">ba.rules.mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/sample_data.html">ba.sample_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/store.html">ba.store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../module_docs/ba/warnings.html">ba.warnings</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ba</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../ba.html">ba</a></li>
+      <li class="breadcrumb-item active">ba.store</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ba.store</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;DataStore: lazy, cached access to contingency tables and potentials.</span>
+
+<span class="sd">&gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">&gt;&gt;&gt; from ba.store import DataStore</span>
+<span class="sd">&gt;&gt;&gt; df = pd.DataFrame({</span>
+<span class="sd">...     &#39;treatment&#39;: [1,1,1,0,0,0],</span>
+<span class="sd">...     &#39;outcome&#39;:   [1,1,0,0,0,1],</span>
+<span class="sd">...     &#39;age_group&#39;: [1,0,1,0,1,0],</span>
+<span class="sd">... })</span>
+<span class="sd">&gt;&gt;&gt; store = DataStore(df)</span>
+<span class="sd">&gt;&gt;&gt; store.vars.treatment</span>
+<span class="sd">&#39;treatment&#39;</span>
+<span class="sd">&gt;&gt;&gt; ct = store.contingency(&#39;treatment&#39;, &#39;outcome&#39;)</span>
+<span class="sd">&gt;&gt;&gt; ct.n</span>
+<span class="sd">6</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">lru_cache</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">combinations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">ba.core.contingency</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContingencyTable</span>
+
+
+<div class="viewcode-block" id="VarNamespace">
+<a class="viewcode-back" href="../../module_docs/ba/store.html#ba.store.VarNamespace">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">VarNamespace</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Attribute namespace for column names with metadata.</span>
+
+<span class="sd">    &gt;&gt;&gt; ns = VarNamespace(pd.DataFrame({&#39;age&#39;: [1,2,3], &#39;name&#39;: [&#39;a&#39;, &#39;b&#39;, &#39;a&#39;]}))</span>
+<span class="sd">    &gt;&gt;&gt; ns.age</span>
+<span class="sd">    &#39;age&#39;</span>
+<span class="sd">    &gt;&gt;&gt; ns.is_binary(&#39;age&#39;)</span>
+<span class="sd">    False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_df</span> <span class="o">=</span> <span class="n">df</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">name</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;No variable &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;. Available: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__dir__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span>
+
+<div class="viewcode-block" id="VarNamespace.is_binary">
+<a class="viewcode-back" href="../../module_docs/ba/store.html#ba.store.VarNamespace.is_binary">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_binary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Check if a variable has exactly 2 unique values.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">2</span></div>
+
+
+<div class="viewcode-block" id="VarNamespace.n_levels">
+<a class="viewcode-back" href="../../module_docs/ba/store.html#ba.store.VarNamespace.n_levels">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n_levels</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of unique non-null values.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_df</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span></div>
+
+
+<div class="viewcode-block" id="VarNamespace.all">
+<a class="viewcode-back" href="../../module_docs/ba/store.html#ba.store.VarNamespace.all">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;All variable names.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="VarNamespace.binary">
+<a class="viewcode-back" href="../../module_docs/ba/store.html#ba.store.VarNamespace.binary">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">binary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Variables with exactly 2 unique values.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_binary</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span></div>
+
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;VarNamespace(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="si">}</span><span class="s2">)&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="DataStore">
+<a class="viewcode-back" href="../../module_docs/ba/store.html#ba.store.DataStore">[docs]</a>
+<span class="k">class</span><span class="w"> </span><span class="nc">DataStore</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Lazy, cached access to contingency tables from a DataFrame.</span>
+
+<span class="sd">    &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">    &gt;&gt;&gt; store = DataStore(pd.DataFrame({&#39;X&#39;: [1,0,1,0], &#39;Y&#39;: [1,1,0,0]}))</span>
+<span class="sd">    &gt;&gt;&gt; ct = store.contingency(&#39;X&#39;, &#39;Y&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; ct.n</span>
+<span class="sd">    4</span>
+<span class="sd">    &gt;&gt;&gt; pairs = store.all_pairs()</span>
+<span class="sd">    &gt;&gt;&gt; len(pairs)</span>
+<span class="sd">    1</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vars</span> <span class="o">=</span> <span class="n">VarNamespace</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="c1"># Wrap _contingency_impl so it&#39;s per-instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ct_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">ContingencyTable</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VarNamespace</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Attribute namespace for column names.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vars</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">n</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of rows in the dataset.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">columns</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataStore.contingency">
+<a class="viewcode-back" href="../../module_docs/ba/store.html#ba.store.DataStore.contingency">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">contingency</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row_var</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">col_var</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ContingencyTable</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Contingency table for two variables. Cached.</span>
+
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; store = DataStore(pd.DataFrame({&#39;A&#39;: [1,1,0,0], &#39;B&#39;: [1,0,1,0]}))</span>
+<span class="sd">        &gt;&gt;&gt; ct1 = store.contingency(&#39;A&#39;, &#39;B&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ct2 = store.contingency(&#39;A&#39;, &#39;B&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; ct1 is ct2</span>
+<span class="sd">        True</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">row_var</span><span class="p">,</span> <span class="n">col_var</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct_cache</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ct_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">ContingencyTable</span><span class="o">.</span><span class="n">from_dataframe</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">row_var</span><span class="p">,</span> <span class="n">col_var</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ct_cache</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="DataStore.pot">
+<a class="viewcode-back" href="../../module_docs/ba/store.html#ba.store.DataStore.pot">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">var_names</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Joint count potential for the given variables. Requires spyn.</span>
+
+<span class="sd">        Returns a spyn Pot representing the joint count distribution.</span>
+
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; store = DataStore(pd.DataFrame({&#39;A&#39;: [1,1,0,0], &#39;B&#39;: [1,0,1,0]}))</span>
+<span class="sd">        &gt;&gt;&gt; p = store.pot(&#39;A&#39;, &#39;B&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; p.n</span>
+<span class="sd">        4</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">spyn.ppi.pot</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pot</span>
+
+        <span class="n">cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">var_names</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">Pot</span><span class="o">.</span><span class="n">from_points_to_count</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">cols</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="DataStore.all_pairs">
+<a class="viewcode-back" href="../../module_docs/ba/store.html#ba.store.DataStore.all_pairs">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">all_pairs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">outcome</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">variables</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="n">ContingencyTable</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;All pairwise contingency tables.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            outcome: If given, only pairs involving this column.</span>
+<span class="sd">            variables: Subset of columns to consider. Default: all.</span>
+
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; store = DataStore(pd.DataFrame({&#39;A&#39;: [1,0], &#39;B&#39;: [1,0], &#39;C&#39;: [0,1]}))</span>
+<span class="sd">        &gt;&gt;&gt; pairs = store.all_pairs()</span>
+<span class="sd">        &gt;&gt;&gt; len(pairs)</span>
+<span class="sd">        3</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="n">variables</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="n">outcome</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">outcome</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Outcome &#39;</span><span class="si">{</span><span class="n">outcome</span><span class="si">}</span><span class="s2">&#39; not in columns: </span><span class="si">{</span><span class="n">cols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">cols</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">col</span> <span class="o">!=</span> <span class="n">outcome</span><span class="p">:</span>
+                    <span class="n">result</span><span class="p">[(</span><span class="n">col</span><span class="p">,</span> <span class="n">outcome</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contingency</span><span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="n">outcome</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">c1</span><span class="p">,</span> <span class="n">c2</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="n">cols</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="n">result</span><span class="p">[(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">)]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">contingency</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

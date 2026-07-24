@@ -1,0 +1,4 @@
+ba.sample_data
+==============
+.. automodule:: ba.sample_data
+   :members:

@@ -1,0 +1,4 @@
+ba.core.pot
+===========
+.. automodule:: ba.core.pot
+   :members:

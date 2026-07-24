@@ -1,0 +1,361 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ba.bayesian.posteriors &mdash; ba 0.3.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=e259d695"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../../_static/toggleprompt.js?v=d7ede5d2"></script>
+      <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            ba
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba.html">ba</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian.html">ba.bayesian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/bayes_factors.html">ba.bayesian.bayes_factors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/posteriors.html">ba.bayesian.posteriors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/priors.html">ba.bayesian.priors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/bayesian/sensitivity.html">ba.bayesian.sensitivity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/binary.html">ba.binary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/binary/shortcuts.html">ba.binary.shortcuts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/config.html">ba.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core.html">ba.core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core/contingency.html">ba.core.contingency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core/metrics.html">ba.core.metrics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/core/pot.html">ba.core.pot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca.html">ba.qca</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/calibrate.html">ba.qca.calibrate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/minimize.html">ba.qca.minimize</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/necessity.html">ba.qca.necessity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/qca/truth_table.html">ba.qca.truth_table</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules.html">ba.rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules/encoding.html">ba.rules.encoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules/itemsets.html">ba.rules.itemsets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/rules/mining.html">ba.rules.mining</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/sample_data.html">ba.sample_data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/store.html">ba.store</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../module_docs/ba/warnings.html">ba.warnings</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">ba</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../ba.html">ba</a></li>
+      <li class="breadcrumb-item active">ba.bayesian.posteriors</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for ba.bayesian.posteriors</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Bayesian posterior inference for contingency tables.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">beta</span> <span class="k">as</span> <span class="n">beta_dist</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">ba.bayesian.priors</span><span class="w"> </span><span class="kn">import</span> <span class="n">resolve_prior</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ba.core.contingency</span><span class="w"> </span><span class="kn">import</span> <span class="n">ContingencyTable</span>
+
+
+<div class="viewcode-block" id="BayesianResult">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/posteriors.html#ba.bayesian.posteriors.BayesianResult">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BayesianResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Container for Bayesian posterior inference results.</span>
+
+<span class="sd">    &gt;&gt;&gt; from ba.core.contingency import ContingencyTable</span>
+<span class="sd">    &gt;&gt;&gt; ct = ContingencyTable.from_counts(7, 3, 2, 8)</span>
+<span class="sd">    &gt;&gt;&gt; r = posterior(ct)</span>
+<span class="sd">    &gt;&gt;&gt; 0.5 &lt; float(r.posterior_mean[0]) &lt; 0.9</span>
+<span class="sd">    True</span>
+<span class="sd">    &gt;&gt;&gt; float(r.data_weight) &gt; 0.9</span>
+<span class="sd">    True</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">posterior_params</span><span class="p">:</span> <span class="nb">dict</span>
+    <span class="n">posterior_mean</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">credible_interval</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span>
+    <span class="n">bayes_factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">data_weight</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">prior_params</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([]))</span>
+    <span class="n">prior_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">mc_samples</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="BayesianResult.summary">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/posteriors.html#ba.bayesian.posteriors.BayesianResult.summary">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;One-row-per-parameter summary.&quot;&quot;&quot;</span>
+        <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">ci</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">credible_interval</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">row</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;parameter&quot;</span><span class="p">:</span> <span class="n">key</span><span class="p">,</span> <span class="s2">&quot;ci_low&quot;</span><span class="p">:</span> <span class="n">ci</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;ci_high&quot;</span><span class="p">:</span> <span class="n">ci</span><span class="p">[</span><span class="mi">1</span><span class="p">]}</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">posterior_params</span> <span class="ow">or</span> <span class="p">{}):</span>
+                <span class="n">params</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">posterior_params</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&quot;alpha&quot;</span> <span class="ow">in</span> <span class="n">params</span><span class="p">:</span>
+                    <span class="n">row</span><span class="p">[</span><span class="s2">&quot;posterior_alpha&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;alpha&quot;</span><span class="p">]</span>
+                    <span class="n">row</span><span class="p">[</span><span class="s2">&quot;posterior_beta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;beta&quot;</span><span class="p">]</span>
+            <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;data_weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data_weight</span>
+        <span class="n">df</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s2">&quot;prior&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior_name</span>
+        <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="BayesianResult.prob_gt">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/posteriors.html#ba.bayesian.posteriors.BayesianResult.prob_gt">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">prob_gt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">parameter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;risk_difference&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;P(parameter &gt; threshold | data) from MC samples.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mc_samples</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">parameter</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mc_samples</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;No MC samples for &#39;</span><span class="si">{</span><span class="n">parameter</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Available: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mc_samples</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="p">{})</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mc_samples</span><span class="p">[</span><span class="n">parameter</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">))</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="posterior">
+<a class="viewcode-back" href="../../../module_docs/ba/bayesian/posteriors.html#ba.bayesian.posteriors.posterior">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">posterior</span><span class="p">(</span>
+    <span class="n">ct</span><span class="p">:</span> <span class="n">ContingencyTable</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">prior</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="s2">&quot;jeffreys&quot;</span><span class="p">,</span>
+    <span class="n">n_mc</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100_000</span><span class="p">,</span>
+    <span class="n">ci_prob</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BayesianResult</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bayesian posterior for row-conditional proportions.</span>
+
+<span class="sd">    For 2×2: Beta-Binomial with MC for derived quantities (RD, RR, OR).</span>
+<span class="sd">    For r×c: Dirichlet-Multinomial per row.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ct: Contingency table.</span>
+<span class="sd">        prior: Prior specification (see ba.bayesian.priors.resolve_prior).</span>
+<span class="sd">        n_mc: Number of Monte Carlo draws for derived quantities.</span>
+<span class="sd">        ci_prob: Probability mass for credible intervals (default 0.95).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        BayesianResult with posterior parameters, CIs, MC samples (2×2 only).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># number of columns (categories for outcome)</span>
+    <span class="n">prior_arr</span> <span class="o">=</span> <span class="n">resolve_prior</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="n">k</span><span class="o">=</span><span class="n">k</span><span class="p">)</span>
+    <span class="n">prior_name</span> <span class="o">=</span> <span class="n">prior</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="nb">repr</span><span class="p">(</span><span class="n">prior</span><span class="p">)</span>
+
+    <span class="n">alpha_low</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ci_prob</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+    <span class="n">alpha_high</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">alpha_low</span>
+
+    <span class="c1"># ESS of the prior is sum of prior params</span>
+    <span class="n">ess_prior</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">prior_arr</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+
+    <span class="k">if</span> <span class="n">ct</span><span class="o">.</span><span class="n">is_2x2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_beta_binomial</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">as_2x2</span><span class="p">(),</span> <span class="n">prior_arr</span><span class="p">,</span> <span class="n">prior_name</span><span class="p">,</span> <span class="n">ess_prior</span><span class="p">,</span> <span class="n">n_mc</span><span class="p">,</span> <span class="n">alpha_low</span><span class="p">,</span> <span class="n">alpha_high</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">_dirichlet_multinomial</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">prior_arr</span><span class="p">,</span> <span class="n">prior_name</span><span class="p">,</span> <span class="n">ess_prior</span><span class="p">,</span> <span class="n">alpha_low</span><span class="p">,</span> <span class="n">alpha_high</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_beta_binomial</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">prior_arr</span><span class="p">,</span> <span class="n">prior_name</span><span class="p">,</span> <span class="n">ess_prior</span><span class="p">,</span> <span class="n">n_mc</span><span class="p">,</span> <span class="n">alpha_low</span><span class="p">,</span> <span class="n">alpha_high</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Beta-Binomial posterior for a 2×2 table.&quot;&quot;&quot;</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">ct</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">ct</span><span class="o">.</span><span class="n">c</span><span class="p">,</span> <span class="n">ct</span><span class="o">.</span><span class="n">d</span>
+    <span class="n">n1</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="n">n0</span> <span class="o">=</span> <span class="n">c</span> <span class="o">+</span> <span class="n">d</span>
+
+    <span class="c1"># Prior params for each row</span>
+    <span class="n">a1_prior</span><span class="p">,</span> <span class="n">b1_prior</span> <span class="o">=</span> <span class="n">prior_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">prior_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">a0_prior</span><span class="p">,</span> <span class="n">b0_prior</span> <span class="o">=</span> <span class="n">prior_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">prior_arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="c1"># Posterior params</span>
+    <span class="n">a1_post</span> <span class="o">=</span> <span class="n">a1_prior</span> <span class="o">+</span> <span class="n">a</span>
+    <span class="n">b1_post</span> <span class="o">=</span> <span class="n">b1_prior</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="n">a0_post</span> <span class="o">=</span> <span class="n">a0_prior</span> <span class="o">+</span> <span class="n">c</span>
+    <span class="n">b0_post</span> <span class="o">=</span> <span class="n">b0_prior</span> <span class="o">+</span> <span class="n">d</span>
+
+    <span class="c1"># Posterior means</span>
+    <span class="n">mean1</span> <span class="o">=</span> <span class="n">a1_post</span> <span class="o">/</span> <span class="p">(</span><span class="n">a1_post</span> <span class="o">+</span> <span class="n">b1_post</span><span class="p">)</span>
+    <span class="n">mean0</span> <span class="o">=</span> <span class="n">a0_post</span> <span class="o">/</span> <span class="p">(</span><span class="n">a0_post</span> <span class="o">+</span> <span class="n">b0_post</span><span class="p">)</span>
+
+    <span class="c1"># Credible intervals for proportions</span>
+    <span class="n">ci_p1</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">beta_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha_low</span><span class="p">,</span> <span class="n">a1_post</span><span class="p">,</span> <span class="n">b1_post</span><span class="p">)),</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">beta_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha_high</span><span class="p">,</span> <span class="n">a1_post</span><span class="p">,</span> <span class="n">b1_post</span><span class="p">)),</span>
+    <span class="p">)</span>
+    <span class="n">ci_p0</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">beta_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha_low</span><span class="p">,</span> <span class="n">a0_post</span><span class="p">,</span> <span class="n">b0_post</span><span class="p">)),</span>
+        <span class="nb">float</span><span class="p">(</span><span class="n">beta_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha_high</span><span class="p">,</span> <span class="n">a0_post</span><span class="p">,</span> <span class="n">b0_post</span><span class="p">)),</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Data weight (average across rows)</span>
+    <span class="n">w1</span> <span class="o">=</span> <span class="n">n1</span> <span class="o">/</span> <span class="p">(</span><span class="n">n1</span> <span class="o">+</span> <span class="n">ess_prior</span><span class="p">)</span>
+    <span class="n">w0</span> <span class="o">=</span> <span class="n">n0</span> <span class="o">/</span> <span class="p">(</span><span class="n">n0</span> <span class="o">+</span> <span class="n">ess_prior</span><span class="p">)</span>
+    <span class="n">data_weight</span> <span class="o">=</span> <span class="p">(</span><span class="n">w1</span> <span class="o">+</span> <span class="n">w0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="c1"># Monte Carlo for derived quantities</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span>
+    <span class="n">pi1</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">a1_post</span><span class="p">,</span> <span class="n">b1_post</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_mc</span><span class="p">)</span>
+    <span class="n">pi0</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">beta</span><span class="p">(</span><span class="n">a0_post</span><span class="p">,</span> <span class="n">b0_post</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n_mc</span><span class="p">)</span>
+
+    <span class="n">rd</span> <span class="o">=</span> <span class="n">pi1</span> <span class="o">-</span> <span class="n">pi0</span>
+    <span class="c1"># Avoid division by zero for RR and OR</span>
+    <span class="n">safe_pi0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pi0</span> <span class="o">&gt;</span> <span class="mf">1e-15</span><span class="p">,</span> <span class="n">pi0</span><span class="p">,</span> <span class="mf">1e-15</span><span class="p">)</span>
+    <span class="n">safe_1_minus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pi1</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-15</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pi1</span><span class="p">,</span> <span class="mf">1e-15</span><span class="p">)</span>
+    <span class="n">safe_1_minus0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="mi">1</span> <span class="o">-</span> <span class="n">pi0</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-15</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">pi0</span><span class="p">,</span> <span class="mf">1e-15</span><span class="p">)</span>
+    <span class="n">rr</span> <span class="o">=</span> <span class="n">pi1</span> <span class="o">/</span> <span class="n">safe_pi0</span>
+    <span class="n">or_samples</span> <span class="o">=</span> <span class="p">(</span><span class="n">pi1</span> <span class="o">/</span> <span class="n">safe_1_minus</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">safe_pi0</span> <span class="o">/</span> <span class="n">safe_1_minus0</span><span class="p">)</span>
+
+    <span class="n">mc_samples</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;p1&quot;</span><span class="p">:</span> <span class="n">pi1</span><span class="p">,</span>
+        <span class="s2">&quot;p0&quot;</span><span class="p">:</span> <span class="n">pi0</span><span class="p">,</span>
+        <span class="s2">&quot;risk_difference&quot;</span><span class="p">:</span> <span class="n">rd</span><span class="p">,</span>
+        <span class="s2">&quot;relative_risk&quot;</span><span class="p">:</span> <span class="n">rr</span><span class="p">,</span>
+        <span class="s2">&quot;odds_ratio&quot;</span><span class="p">:</span> <span class="n">or_samples</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">ci_rd</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">rd</span><span class="p">,</span> <span class="n">alpha_low</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">rd</span><span class="p">,</span> <span class="n">alpha_high</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)))</span>
+    <span class="n">ci_rr</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">alpha_low</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">rr</span><span class="p">,</span> <span class="n">alpha_high</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)))</span>
+    <span class="n">ci_or</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">or_samples</span><span class="p">,</span> <span class="n">alpha_low</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)),</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">or_samples</span><span class="p">,</span> <span class="n">alpha_high</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)))</span>
+
+    <span class="k">return</span> <span class="n">BayesianResult</span><span class="p">(</span>
+        <span class="n">posterior_params</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;p1&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="n">a1_post</span><span class="p">,</span> <span class="s2">&quot;beta&quot;</span><span class="p">:</span> <span class="n">b1_post</span><span class="p">},</span>
+            <span class="s2">&quot;p0&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="n">a0_post</span><span class="p">,</span> <span class="s2">&quot;beta&quot;</span><span class="p">:</span> <span class="n">b0_post</span><span class="p">},</span>
+        <span class="p">},</span>
+        <span class="n">posterior_mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">mean1</span><span class="p">,</span> <span class="n">mean0</span><span class="p">]),</span>
+        <span class="n">credible_interval</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;p1&quot;</span><span class="p">:</span> <span class="n">ci_p1</span><span class="p">,</span>
+            <span class="s2">&quot;p0&quot;</span><span class="p">:</span> <span class="n">ci_p0</span><span class="p">,</span>
+            <span class="s2">&quot;risk_difference&quot;</span><span class="p">:</span> <span class="n">ci_rd</span><span class="p">,</span>
+            <span class="s2">&quot;relative_risk&quot;</span><span class="p">:</span> <span class="n">ci_rr</span><span class="p">,</span>
+            <span class="s2">&quot;odds_ratio&quot;</span><span class="p">:</span> <span class="n">ci_or</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">data_weight</span><span class="o">=</span><span class="n">data_weight</span><span class="p">,</span>
+        <span class="n">prior_params</span><span class="o">=</span><span class="n">prior_arr</span><span class="p">,</span>
+        <span class="n">prior_name</span><span class="o">=</span><span class="n">prior_name</span><span class="p">,</span>
+        <span class="n">mc_samples</span><span class="o">=</span><span class="n">mc_samples</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_dirichlet_multinomial</span><span class="p">(</span><span class="n">ct</span><span class="p">,</span> <span class="n">prior_arr</span><span class="p">,</span> <span class="n">prior_name</span><span class="p">,</span> <span class="n">ess_prior</span><span class="p">,</span> <span class="n">alpha_low</span><span class="p">,</span> <span class="n">alpha_high</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Dirichlet-Multinomial posterior for an r×c table.&quot;&quot;&quot;</span>
+    <span class="n">posterior_params</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">posterior_means</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cis</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">row_counts</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">counts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">post_alpha</span> <span class="o">=</span> <span class="n">prior_arr</span> <span class="o">+</span> <span class="n">row_counts</span>
+        <span class="n">post_mean</span> <span class="o">=</span> <span class="n">post_alpha</span> <span class="o">/</span> <span class="n">post_alpha</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">posterior_means</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">post_mean</span><span class="p">)</span>
+
+        <span class="n">label</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">row_labels</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">row_labels</span><span class="p">)</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">posterior_params</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;row_</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="n">post_alpha</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
+
+        <span class="c1"># CI for each category proportion in this row (marginal Beta)</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">col_label</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">col_labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">ct</span><span class="o">.</span><span class="n">col_labels</span><span class="p">)</span> <span class="k">else</span> <span class="nb">str</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;p(</span><span class="si">{</span><span class="n">col_label</span><span class="si">}</span><span class="s2">|</span><span class="si">{</span><span class="n">label</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="n">a_j</span> <span class="o">=</span> <span class="n">post_alpha</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">b_j</span> <span class="o">=</span> <span class="n">post_alpha</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">-</span> <span class="n">a_j</span>
+            <span class="n">cis</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="nb">float</span><span class="p">(</span><span class="n">beta_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha_low</span><span class="p">,</span> <span class="n">a_j</span><span class="p">,</span> <span class="n">b_j</span><span class="p">)),</span>
+                <span class="nb">float</span><span class="p">(</span><span class="n">beta_dist</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="n">alpha_high</span><span class="p">,</span> <span class="n">a_j</span><span class="p">,</span> <span class="n">b_j</span><span class="p">)),</span>
+            <span class="p">)</span>
+
+    <span class="c1"># Data weight</span>
+    <span class="n">n_total</span> <span class="o">=</span> <span class="n">ct</span><span class="o">.</span><span class="n">n</span>
+    <span class="n">data_weight</span> <span class="o">=</span> <span class="n">n_total</span> <span class="o">/</span> <span class="p">(</span><span class="n">n_total</span> <span class="o">+</span> <span class="n">ess_prior</span> <span class="o">*</span> <span class="n">ct</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">BayesianResult</span><span class="p">(</span>
+        <span class="n">posterior_params</span><span class="o">=</span><span class="n">posterior_params</span><span class="p">,</span>
+        <span class="n">posterior_mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">posterior_means</span><span class="p">),</span>
+        <span class="n">credible_interval</span><span class="o">=</span><span class="n">cis</span><span class="p">,</span>
+        <span class="n">data_weight</span><span class="o">=</span><span class="n">data_weight</span><span class="p">,</span>
+        <span class="n">prior_params</span><span class="o">=</span><span class="n">prior_arr</span><span class="p">,</span>
+        <span class="n">prior_name</span><span class="o">=</span><span class="n">prior_name</span><span class="p">,</span>
+        <span class="n">mc_samples</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

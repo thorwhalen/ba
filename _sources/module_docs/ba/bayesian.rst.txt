@@ -1,0 +1,4 @@
+ba.bayesian
+===========
+.. automodule:: ba.bayesian
+   :members:

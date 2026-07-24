@@ -1,0 +1,4 @@
+ba.qca
+======
+.. automodule:: ba.qca
+   :members:

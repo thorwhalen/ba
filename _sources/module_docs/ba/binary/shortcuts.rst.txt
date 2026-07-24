@@ -1,0 +1,4 @@
+ba.binary.shortcuts
+===================
+.. automodule:: ba.binary.shortcuts
+   :members:

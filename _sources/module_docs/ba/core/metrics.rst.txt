@@ -1,0 +1,4 @@
+ba.core.metrics
+===============
+.. automodule:: ba.core.metrics
+   :members:

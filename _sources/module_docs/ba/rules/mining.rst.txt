@@ -1,0 +1,4 @@
+ba.rules.mining
+===============
+.. automodule:: ba.rules.mining
+   :members:

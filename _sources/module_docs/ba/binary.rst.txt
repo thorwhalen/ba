@@ -1,0 +1,4 @@
+ba.binary
+=========
+.. automodule:: ba.binary
+   :members:
